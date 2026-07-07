@@ -321,35 +321,48 @@ html, body {
 
 .search-bar-wrapper {
     position: relative;
-    max-width: 620px;
+    max-width: 660px;
     margin: 0 auto;
+    transition: transform var(--transition-fast);
+}
+
+.search-bar-wrapper:focus-within {
+    transform: scale(1.01);
 }
 
 .search-bar-wrapper .search-icon {
     position: absolute;
-    left: 20px;
+    left: 22px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-muted);
+    color: var(--accent-indigo);
+    font-size: 1.1rem;
+    transition: color var(--transition-fast);
+}
+
+.search-bar-wrapper:focus-within .search-icon {
+    color: var(--accent-cyan);
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.3));
 }
 
 #tool-search {
     width: 100%;
-    height: 54px;
+    height: 58px;
     background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
     color: var(--text-primary);
-    padding: 0 16px 0 52px;
-    font-size: 0.95rem;
+    padding: 0 20px 0 56px;
+    font-size: 1rem;
+    font-weight: 500;
     outline: none;
-    transition: var(--transition-fast);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: var(--shadow-md);
 }
 
 #tool-search:focus {
-    border-color: var(--accent-indigo);
-    box-shadow: 0 4px 24px rgba(99, 102, 241, 0.15);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.3);
 }
 
 /* Category Rows Layout */
@@ -1367,9 +1380,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .blog-full-content {
-    font-size: 1.05rem;
-    line-height: 1.75;
+    font-size: 1.08rem;
+    line-height: 1.8;
     color: var(--text-secondary);
+    max-width: 740px;
+    margin: 0 auto;
 }
 
 .blog-full-content p {
@@ -1671,26 +1686,28 @@ html[dir="rtl"] .uiux-sidebar .sidebar-content {
 }
 
 .preset-btn {
-    border-radius: 8px;
+    padding: 10px 14px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: var(--transition-fast);
+    gap: 10px;
+    transition: all var(--transition-fast);
 }
 
 .preset-btn:hover {
     border-color: var(--accent-indigo);
     color: var(--text-primary);
+    transform: translateY(-1px);
 }
 
 .preset-btn.active {
     border-color: var(--accent-indigo) !important;
-    box-shadow: 0 0 0 1px var(--accent-indigo);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
     color: var(--text-primary);
 }
 

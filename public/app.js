@@ -45,7 +45,8 @@ const aboutView = document.getElementById('about-view');
 // Category navigation links
 const navCatDevTools = document.getElementById('nav-cat-developer-tools');
 const navCatAiUtils = document.getElementById('nav-cat-ai-utilities');
-const navCatDesignMedia = document.getElementById('nav-cat-design-media');
+const navCatDesignMedia = document.getElementById('nav-cat-design-and-media');
+const navCatProductivityBusiness = document.getElementById('nav-cat-productivity-and-business');
 const headerLangSelector = document.getElementById('header-lang-selector');
 
 // UI/UX Customizer Sidebar selectors
@@ -1871,6 +1872,374 @@ Total Balance: $${total.toFixed(2)}
             });
             document.getElementById('copy-pdf-json-btn').addEventListener('click', () => copyText(out.innerText, document.getElementById('copy-pdf-json-btn')));
         }
+    },
+    {
+        id: "base64-converter",
+        name: "Base64 Encoder & Decoder",
+        category: "Developer Tools",
+        icon: "fa-solid fa-arrow-right-arrow-left",
+        description: "Encode and decode raw strings to and from Base64 formats locally. Safe URL encoding standard is supported.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="b64-input">Input Raw String</label>
+                            <textarea id="b64-input" style="height:150px;" placeholder="Hello, World!"></textarea>
+                        </div>
+                        <div style="display:flex; gap:12px;">
+                            <button id="b64-encode-btn" class="btn btn-primary" style="flex:1;">Encode Base64</button>
+                            <button id="b64-decode-btn" class="btn btn-outline" style="flex:1;">Decode Base64</button>
+                        </div>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>Output Result</span>
+                                <button id="copy-b64-btn" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <pre><code id="b64-out" style="white-space:pre-wrap; word-break:break-all;"></code></pre>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const b64In = document.getElementById('b64-input');
+            const b64Out = document.getElementById('b64-out');
+            
+            document.getElementById('b64-encode-btn').addEventListener('click', () => {
+                try {
+                    b64Out.innerText = btoa(unescape(encodeURIComponent(b64In.value)));
+                } catch(e) {
+                    alert("Encoding error! Please inspect input format.");
+                }
+            });
+            document.getElementById('b64-decode-btn').addEventListener('click', () => {
+                try {
+                    b64Out.innerText = decodeURIComponent(escape(atob(b64In.value)));
+                } catch(e) {
+                    alert("Invalid Base64 sequence! Please inspect input format.");
+                }
+            });
+            document.getElementById('copy-b64-btn').addEventListener('click', () => copyText(b64Out.innerText, document.getElementById('copy-b64-btn')));
+        }
+    },
+    {
+        id: "ai-code-reviewer",
+        name: "AI Code Explainer & Reviewer",
+        category: "AI Utilities",
+        icon: "fa-solid fa-magnifying-glass-chart",
+        description: "Analyze code structures, identify performance bottlenecks, and generate review comments using Gemini AI.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="ai-code-input">Paste Snippet Code</label>
+                            <textarea id="ai-code-input" style="height:200px;" placeholder="function search(arr, x) {\n    for (let i = 0; i < arr.length; i++) {\n        if (arr[i] == x) return i;\n    }\n    return -1;\n}"></textarea>
+                        </div>
+                        <button id="ai-review-btn" class="btn btn-primary btn-block">Review Code</button>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>AI Review Report</span>
+                                <button id="copy-ai-review" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <div id="ai-review-out" style="padding:16px; font-size:0.88rem; color:var(--text-secondary); min-height:200px; white-space:pre-wrap; line-height:1.6;">AI comments will render here...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const codeIn = document.getElementById('ai-code-input');
+            const reviewOut = document.getElementById('ai-review-out');
+            const btn = document.getElementById('ai-review-btn');
+            
+            btn.addEventListener('click', async () => {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Reviewing...';
+                reviewOut.innerText = "Analyzing code using Gemini AI models...";
+                try {
+                    const ans = await callAI(codeIn.value, "Act as an expert code reviewer. Explain the code step-by-step, review its complexity (Time & Space), and suggest optimizations.");
+                    reviewOut.innerText = ans;
+                } catch(e) {
+                    reviewOut.innerText = "Failed to compile review. Please verify server connection or save your own Gemini Key in Settings.";
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Review Code';
+                }
+            });
+            document.getElementById('copy-ai-review').addEventListener('click', () => copyText(reviewOut.innerText, document.getElementById('copy-ai-review')));
+        }
+    },
+    {
+        id: "ai-regex-generator",
+        name: "AI Regex Generator",
+        category: "AI Utilities",
+        icon: "fa-solid fa-code-branch",
+        description: "Generate regular expressions from natural language description queries using Gemini AI.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="ai-regex-prompt">Describe Regex Rules</label>
+                            <textarea id="ai-regex-prompt" style="height:120px;" placeholder="Match valid international phone numbers, supporting country codes and brackets."></textarea>
+                        </div>
+                        <button id="ai-regex-btn" class="btn btn-primary btn-block">Generate Expression</button>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>Generated Regular Expression</span>
+                                <button id="copy-ai-regex" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <div id="ai-regex-out" style="padding:16px; font-size:1.1rem; font-family:monospace; color:var(--accent-indigo); min-height:80px; white-space:pre-wrap;">Expression will render here...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const promptIn = document.getElementById('ai-regex-prompt');
+            const regexOut = document.getElementById('ai-regex-out');
+            const btn = document.getElementById('ai-regex-btn');
+            
+            btn.addEventListener('click', async () => {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Generating...';
+                regexOut.innerText = "Generating regex expression...";
+                try {
+                    const ans = await callAI(promptIn.value, "Generate a regular expression matching the description. Output ONLY the regex pattern (e.g. /^[0-9]+$/), followed by 3 short test case sentences.");
+                    regexOut.innerText = ans;
+                } catch(e) {
+                    regexOut.innerText = "Error compiling expression. Check server parameters.";
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Generate Expression';
+                }
+            });
+            document.getElementById('copy-ai-regex').addEventListener('click', () => copyText(regexOut.innerText, document.getElementById('copy-ai-regex')));
+        }
+    },
+    {
+        id: "ai-translation-assistant",
+        name: "AI Code Translation Assistant",
+        category: "AI Utilities",
+        icon: "fa-solid fa-language",
+        description: "Translate code comments, labels, or variable names between languages or structures using Gemini AI.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="ai-translate-input">Input Strings / Snippet</label>
+                            <textarea id="ai-translate-input" style="height:120px;" placeholder="const msg = 'Welcome to our platform. Click here to configure settings.';"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="ai-translate-lang">Target Language</label>
+                            <select id="ai-translate-lang">
+                                <option value="Hindi">Hindi (हिन्दी)</option>
+                                <option value="Spanish">Spanish (Español)</option>
+                                <option value="French">French (Français)</option>
+                                <option value="German">German</option>
+                                <option value="Arabic">Arabic</option>
+                            </select>
+                        </div>
+                        <button id="ai-translate-btn" class="btn btn-primary btn-block">Translate Content</button>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>Translation Output</span>
+                                <button id="copy-ai-translate" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <div id="ai-translate-out" style="padding:16px; font-size:0.88rem; color:var(--text-secondary); min-height:120px; white-space:pre-wrap;">Output results...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const valIn = document.getElementById('ai-translate-input');
+            const targetLang = document.getElementById('ai-translate-lang');
+            const valOut = document.getElementById('ai-translate-out');
+            const btn = document.getElementById('ai-translate-btn');
+            
+            btn.addEventListener('click', async () => {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Translating...';
+                valOut.innerText = "Translating parameters...";
+                try {
+                    const ans = await callAI(`Translate this text into ${targetLang.value}: ${valIn.value}`, "Translate the input text. Preserve code properties, templates, or HTML tags if present.");
+                    valOut.innerText = ans;
+                } catch(e) {
+                    valOut.innerText = "Error executing translation request.";
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Translate Content';
+                }
+            });
+            document.getElementById('copy-ai-translate').addEventListener('click', () => copyText(valOut.innerText, document.getElementById('copy-ai-translate')));
+        }
+    },
+    {
+        id: "ai-commit-writer",
+        name: "AI Git Commit Message Writer",
+        category: "AI Utilities",
+        icon: "fa-solid fa-keyboard",
+        description: "Draft structural, semantic conventional git commit messages based on diff summaries using Gemini AI.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="ai-diff-input">Paste Git Diff / Change Summary</label>
+                            <textarea id="ai-diff-input" style="height:150px;" placeholder="Added theme preset overrides in styles.css\nModified app.js to bind customizer slider sidebar elements."></textarea>
+                        </div>
+                        <button id="ai-commit-btn" class="btn btn-primary btn-block">Generate Commit Message</button>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>Git Commit Message</span>
+                                <button id="copy-ai-commit" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <div id="ai-commit-out" style="padding:16px; font-family:monospace; font-size:0.85rem; color:var(--accent-indigo); min-height:100px; white-space:pre-wrap;">Commit message will render here...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const diffIn = document.getElementById('ai-diff-input');
+            const msgOut = document.getElementById('ai-commit-out');
+            const btn = document.getElementById('ai-commit-btn');
+            
+            btn.addEventListener('click', async () => {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Drafting...';
+                msgOut.innerText = "Drafting conventional commit message...";
+                try {
+                    const ans = await callAI(diffIn.value, "Generate a Git commit message using Conventional Commits rules (e.g. feat(customizer): add slide-in settings panel). Output ONLY the clean commit message.");
+                    msgOut.innerText = ans;
+                } catch(e) {
+                    msgOut.innerText = "Error compiling commit message.";
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Generate Commit Message';
+                }
+            });
+            document.getElementById('copy-ai-commit').addEventListener('click', () => copyText(msgOut.innerText, document.getElementById('copy-ai-commit')));
+        }
+    },
+    {
+        id: "ai-user-story",
+        name: "AI Agile User Story Writer",
+        category: "AI Utilities",
+        icon: "fa-solid fa-scroll",
+        description: "Draft agile user stories, acceptance criteria, and checklist items using Gemini AI models.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="ai-feature-input">Describe Feature / Task Brief</label>
+                            <textarea id="ai-feature-input" style="height:120px;" placeholder="Add a slide-in sidebar for settings presets. Needs toggles for themes and layout density."></textarea>
+                        </div>
+                        <button id="ai-story-btn" class="btn btn-primary btn-block">Generate User Story</button>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>Agile User Story & Criteria</span>
+                                <button id="copy-ai-story" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <div id="ai-story-out" style="padding:16px; font-size:0.88rem; color:var(--text-secondary); min-height:150px; white-space:pre-wrap; line-height:1.6;">User Story details...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const featIn = document.getElementById('ai-feature-input');
+            const storyOut = document.getElementById('ai-story-out');
+            const btn = document.getElementById('ai-story-btn');
+            
+            btn.addEventListener('click', async () => {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Writing Story...';
+                storyOut.innerText = "Writing agile story blocks...";
+                try {
+                    const ans = await callAI(featIn.value, "Write a structured Agile User Story with format 'As a... I want to... So that...', followed by bulleted Acceptance Criteria using Given/When/Then templates.");
+                    storyOut.innerText = ans;
+                } catch(e) {
+                    storyOut.innerText = "Error generating user story.";
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Generate User Story';
+                }
+            });
+            document.getElementById('copy-ai-story').addEventListener('click', () => copyText(storyOut.innerText, document.getElementById('copy-ai-story')));
+        }
+    },
+    {
+        id: "utm-builder",
+        name: "UTM Campaign Tracking Builder",
+        category: "Productivity & Business",
+        icon: "fa-solid fa-bullhorn",
+        description: "Generate campaign analytical URLs with structured UTM parameters (source, medium, name, keyword) in real-time.",
+        render: (container) => {
+            container.innerHTML = `
+                <div class="tool-grid-split">
+                    <div class="tool-params-panel">
+                        <div class="form-group">
+                            <label for="utm-base-url">Base Website URL</label>
+                            <input type="text" id="utm-base-url" placeholder="https://mywebsite.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="utm-source">Campaign Source (utm_source)</label>
+                            <input type="text" id="utm-source" placeholder="google, newsletter">
+                        </div>
+                        <div class="form-group">
+                            <label for="utm-medium">Campaign Medium (utm_medium)</label>
+                            <input type="text" id="utm-medium" placeholder="cpc, email, banner">
+                        </div>
+                        <div class="form-group">
+                            <label for="utm-name">Campaign Name (utm_campaign)</label>
+                            <input type="text" id="utm-name" placeholder="spring_sale">
+                        </div>
+                        <button id="utm-generate-btn" class="btn btn-primary btn-block">Generate Campaign URL</button>
+                    </div>
+                    <div class="tool-preview-panel">
+                        <div class="code-box">
+                            <div class="code-box-header">
+                                <span>UTM Tracking Link</span>
+                                <button id="copy-utm-btn" class="btn btn-sm btn-outline">Copy</button>
+                            </div>
+                            <pre><code id="utm-out" style="white-space:pre-wrap; word-break:break-all;">Campaign link will render here...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const base = document.getElementById('utm-base-url');
+            const src = document.getElementById('utm-source');
+            const med = document.getElementById('utm-medium');
+            const name = document.getElementById('utm-name');
+            const out = document.getElementById('utm-out');
+            
+            document.getElementById('utm-generate-btn').addEventListener('click', () => {
+                let urlVal = base.value.trim();
+                if (!urlVal) {
+                    alert("Please provide a base website URL.");
+                    return;
+                }
+                if (!urlVal.startsWith('http://') && !urlVal.startsWith('https://')) {
+                    urlVal = 'https://' + urlVal;
+                }
+                try {
+                    const parsed = new URL(urlVal);
+                    if (src.value.trim()) parsed.searchParams.set('utm_source', src.value.trim());
+                    if (med.value.trim()) parsed.searchParams.set('utm_medium', med.value.trim());
+                    if (name.value.trim()) parsed.searchParams.set('utm_campaign', name.value.trim());
+                    out.innerText = parsed.toString();
+                } catch(e) {
+                    alert("Malformed URL format! Check inputs.");
+                }
+            });
+            document.getElementById('copy-utm-btn').addEventListener('click', () => copyText(out.innerText, document.getElementById('copy-utm-btn')));
+        }
     }
 ];
 
@@ -2167,6 +2536,7 @@ function loadToolPage(toolId) {
     // Scroll page back to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 const translations = {
     en: {
         home: "Home",
@@ -2212,7 +2582,8 @@ const translations = {
         primaryTypography: "Primary Typography Preset",
         enableBlur: "Enable Glassmorphic Backdrop Blur",
         rtlSupport: "Language Direction",
-        enableRtl: "Enable RTL (Right-to-Left) Layout"
+        enableRtl: "Enable RTL (Right-to-Left) Layout",
+        prodBusiness: "Productivity & Business"
     },
     hi: {
         home: "मुख्य पृष्ठ",
@@ -2258,7 +2629,8 @@ const translations = {
         primaryTypography: "प्राथमिक टाइपोग्राफी प्रीसेट",
         enableBlur: "ग्लासमॉर्फिक बैकड्रॉप ब्लर सक्षम करें",
         rtlSupport: "भाषा की दिशा",
-        enableRtl: "RTL (दाएं से बाएं) लेआउट सक्षम करें"
+        enableRtl: "RTL (दाएं से बाएं) लेआउट सक्षम करें",
+        prodBusiness: "उत्पादकता और व्यवसाय"
     },
     es: {
         home: "Inicio",
@@ -2304,7 +2676,8 @@ const translations = {
         primaryTypography: "Ajuste Preestablecido de Tipografía",
         enableBlur: "Habilitar Desenfoque de Fondo Glassmorphic",
         rtlSupport: "Dirección del Idioma",
-        enableRtl: "Habilitar Diseño RTL (Derecha a Izquierda)"
+        enableRtl: "Habilitar Diseño RTL (Derecha a Izquierda)",
+        prodBusiness: "Productividad y Negocios"
     },
     fr: {
         home: "Accueil",
@@ -2314,7 +2687,7 @@ const translations = {
         heroDesc: "Recherchez et accédez à plus de 30 utilitaires client hautement réactifs et respectueux de la vie privée pour accélérer votre flux de travail.",
         searchPlaceholder: "Rechercher des outils (ex. SQL, JSON, SVG, Regex...)",
         aboutTitle: "À propos de AIToolXRadar",
-        aboutContent: "AIToolXRadar est un catalogue d'utilitaires web respectueux de la vie privée pour les développeurs, proposant des compilateurs et formateurs hors ligne ultra-rapides. Toutes les opérations s'exécutent localement à 100% dans votre navigateur — aucune donnée n'est envoyée au serveur.",
+        aboutContent: "AIToolXRadar is a privacy-first web utilities catalog serving developers with lightning-fast offline compilers, helpers, and formatters. All operations run 100% locally in your browser—no data is ever sent to the server.",
         aboutPrivacyTitle: "100% Confidentialité Client",
         aboutPrivacyDesc: "Votre code et vos données sont privés. D'autres services envoient vos charges à des API tierces pour exécution. AIToolXRadar effectue les conversions, le formatage, l'encodage et les calculs directement dans votre navigateur. Pas de cookies, pas de base de données, pas de suivi serveur.",
         accentColor: "Couleur d'accent",
@@ -2350,7 +2723,8 @@ const translations = {
         primaryTypography: "Présélection Typographique Principale",
         enableBlur: "Activer le Flou d'Arrière-plan Glassmorphic",
         rtlSupport: "Direction de la Langue",
-        enableRtl: "Activer la Mise en Page RTL (Droite à Gauche)"
+        enableRtl: "Activer la Mise en Page RTL (Droite à Gauche)",
+        prodBusiness: "Productivité & Affaires"
     },
     ar: {
         home: "الرئيسية",
@@ -2440,8 +2814,8 @@ function setLanguage(lang) {
     const currentHash = location.hash;
     if (!catalogView.classList.contains('hidden')) {
         if (currentHash.startsWith('#category-')) {
-            const catName = currentHash.replace('#category-', '').replace(/-/g, ' ');
-            renderCatalog(toolSearchInput.value, catName);
+            const catId = currentHash.replace('#category-', '');
+            renderCatalog(toolSearchInput.value, catId);
         } else {
             renderCatalog(toolSearchInput.value);
         }
@@ -2467,6 +2841,21 @@ function setThemePreset(preset) {
             btn.classList.remove('active');
         }
     });
+
+    // Update top header theme toggle icon dynamically
+    const headerThemeBtn = document.getElementById('header-theme-toggle');
+    if (headerThemeBtn) {
+        const icon = headerThemeBtn.querySelector('i');
+        if (icon) {
+            if (preset === 'pure-light') {
+                icon.className = 'fa-solid fa-moon';
+                headerThemeBtn.title = "Switch to Dark Mode";
+            } else {
+                icon.className = 'fa-solid fa-sun';
+                headerThemeBtn.title = "Switch to Light Mode";
+            }
+        }
+    }
 }
 
 function setDensity(density) {
@@ -2542,6 +2931,7 @@ function route() {
     if (navCatDevTools) navCatDevTools.classList.remove('active');
     if (navCatAiUtils) navCatAiUtils.classList.remove('active');
     if (navCatDesignMedia) navCatDesignMedia.classList.remove('active');
+    if (navCatProductivityBusiness) navCatProductivityBusiness.classList.remove('active');
 
     if (!hash || hash === '#home' || hash === '') {
         navHomeLink.classList.add('active');
@@ -2564,8 +2954,7 @@ function route() {
         if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
         
-        const catName = catId.replace(/-/g, ' ');
-        renderCatalog(toolSearchInput.value, catName);
+        renderCatalog(toolSearchInput.value, catId);
     } else if (hash === '#blogs') {
         if (navBlogsLink) navBlogsLink.classList.add('active');
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
@@ -2615,8 +3004,8 @@ window.addEventListener('hashchange', route);
 toolSearchInput.addEventListener('input', () => {
     const currentHash = location.hash;
     if (currentHash.startsWith('#category-')) {
-        const catName = currentHash.replace('#category-', '').replace(/-/g, ' ');
-        renderCatalog(toolSearchInput.value, catName);
+        const catId = currentHash.replace('#category-', '');
+        renderCatalog(toolSearchInput.value, catId);
     } else {
         renderCatalog(toolSearchInput.value);
     }
@@ -2656,6 +3045,15 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
         setThemePreset(btn.getAttribute('data-preset'));
     });
 });
+
+// Top Header Theme Toggle
+const headerThemeToggle = document.getElementById('header-theme-toggle');
+if (headerThemeToggle) {
+    headerThemeToggle.addEventListener('click', () => {
+        const newPreset = currentPreset === 'pure-light' ? 'dark-slate' : 'pure-light';
+        setThemePreset(newPreset);
+    });
+}
 
 // Density Selector
 if (densitySelector) {
