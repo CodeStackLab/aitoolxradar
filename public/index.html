@@ -35,8 +35,35 @@
                 <a href="#category-ai-utilities" class="menu-link" id="nav-cat-ai-utilities"><i class="fa-solid fa-robot"></i> <span data-translate="aiUtils">AI Utilities</span></a>
                 <a href="#category-design-and-media" class="menu-link" id="nav-cat-design-and-media"><i class="fa-solid fa-image"></i> <span data-translate="designMedia">Design & Media</span></a>
                 <a href="#category-productivity-and-business" class="menu-link" id="nav-cat-productivity-and-business"><i class="fa-solid fa-briefcase"></i> <span data-translate="prodBusiness">Productivity & Business</span></a>
-                <a href="#blogs" class="menu-link" id="nav-blogs-link"><i class="fa-solid fa-book-open"></i> <span data-translate="blogs">Blogs</span></a>
-                <a href="#about" class="menu-link" id="nav-about-link"><i class="fa-solid fa-circle-info"></i> <span data-translate="about">About</span></a>
+                <!-- More Dropdown -->
+                <div class="menu-dropdown-wrapper">
+                    <button class="menu-link dropdown-trigger-btn" id="nav-more-btn">
+                        <i class="fa-solid fa-ellipsis-vertical"></i> <span>More</span> <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; margin-left:2px;"></i>
+                    </button>
+                    <div class="menu-dropdown-card glass-panel">
+                        <a href="#category-niche-utilities" class="dropdown-item" id="nav-cat-niche-utilities">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            <div>
+                                <div class="dropdown-item-title">Niche Utilities</div>
+                                <div class="dropdown-item-desc">DNS checks, invoice parsers, and custom PDF tools</div>
+                            </div>
+                        </a>
+                        <a href="#blogs" class="dropdown-item" id="nav-blogs-link">
+                            <i class="fa-solid fa-book-open"></i>
+                            <div>
+                                <div class="dropdown-item-title" data-translate="blogs">Blogs</div>
+                                <div class="dropdown-item-desc">Insightful developer guides, updates, and tutorials</div>
+                            </div>
+                        </a>
+                        <a href="#about" class="dropdown-item" id="nav-about-link">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <div>
+                                <div class="dropdown-item-title" data-translate="about">About</div>
+                                <div class="dropdown-item-desc">Our mission, serverless client privacy details</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 
                 <!-- Globe Language Switcher on header right -->
                 <div class="header-lang-wrapper" style="margin-left: 12px; display: flex; align-items: center; gap: 6px;">
@@ -79,6 +106,7 @@
                 <a href="#category-ai-utilities" class="drawer-link"><i class="fa-solid fa-robot"></i> <span data-translate="aiUtils">AI Utilities</span></a>
                 <a href="#category-design-and-media" class="drawer-link" id="nav-cat-design-and-media-drawer"><i class="fa-solid fa-image"></i> <span data-translate="designMedia">Design & Media</span></a>
                 <a href="#category-productivity-and-business" class="drawer-link" id="nav-cat-productivity-and-business-drawer"><i class="fa-solid fa-briefcase"></i> <span data-translate="prodBusiness">Productivity & Business</span></a>
+                <a href="#category-niche-utilities" class="drawer-link" id="nav-cat-niche-utilities-drawer"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-translate="nicheUtils">Niche Utilities</span></a>
                 <a href="#blogs" class="drawer-link" id="nav-blogs-drawer-link"><i class="fa-solid fa-book-open"></i> <span data-translate="blogs">Blogs</span></a>
                 <a href="#about" class="drawer-link" id="nav-about-drawer-link"><i class="fa-solid fa-circle-info"></i> <span data-translate="about">About</span></a>
             </nav>
@@ -120,6 +148,11 @@
                 <p id="category-hero-desc">Curated utilities for developer productivity.</p>
             </section>
 
+            <!-- Category Specific Search -->
+            <div class="search-bar-wrapper" style="margin-bottom: 40px;">
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" id="category-tool-search" placeholder="Search tools in this category...">
+            </div>
 
             <!-- Dynamic grid of tools for this category -->
             <div id="category-tools-grid" class="category-row-grid">
