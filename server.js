@@ -179,7 +179,30 @@ app.post('/api/ai/generate', async (req, res) => {
         }
     }
 
-    // Fallback logic if Gemini is not set up or failed
+    // Primary fallback: Query Pollinations AI (free, no API key required)
+    try {
+        console.log("Gemini API not configured or failed. Querying Pollinations AI free endpoint...");
+        const response = await fetch('https://text.pollinations.ai/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                messages: [
+                    { role: 'system', content: systemInstruction || "You are a helpful assistant." },
+                    { role: 'user', content: prompt }
+                ]
+            })
+        });
+        if (response.ok) {
+            const text = await response.text();
+            if (text && text.trim().length > 0) {
+                return res.json({ text: text.trim(), provider: "Pollinations Free AI" });
+            }
+        }
+    } catch (e) {
+        console.error("Pollinations free AI fallback failed, continuing to static templates...", e.message);
+    }
+
+    // Secondary fallback logic if all API sources failed
     console.log("No valid live API response, returning smart developer templates...");
     
     const lower = prompt.toLowerCase();

@@ -2818,15 +2818,22 @@ function setLanguage(lang) {
         setRtl(currentRtl);
     }
 
-    // Re-render tools catalog with new language details if open
+    // Re-render current active view to apply translation updates dynamically
     const currentHash = location.hash;
     if (!catalogView.classList.contains('hidden')) {
         renderCatalog(toolSearchInput.value);
-    }
-    if (categoryPageView && !categoryPageView.classList.contains('hidden')) {
-        if (currentHash.startsWith('#category-')) {
-            const catId = currentHash.replace('#category-', '');
-            renderCategoryPage(catId, categoryToolSearch ? categoryToolSearch.value : '');
+    } else if (categoryPageView && !categoryPageView.classList.contains('hidden') && currentHash.startsWith('#category-')) {
+        const catId = currentHash.replace('#category-', '');
+        renderCategoryPage(catId, categoryToolSearch ? categoryToolSearch.value : '');
+    } else if (!toolView.classList.contains('hidden') && currentHash.startsWith('#tool-')) {
+        const id = currentHash.replace('#tool-', '');
+        loadToolPage(id);
+    } else if (blogsView && !blogsView.classList.contains('hidden')) {
+        if (currentHash.startsWith('#blog-')) {
+            const blogId = currentHash.replace('#blog-', '');
+            renderBlogPost(blogId);
+        } else {
+            renderBlogsList();
         }
     }
 }
