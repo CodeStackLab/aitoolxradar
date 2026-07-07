@@ -29,8 +29,38 @@
             
             <!-- Desktop Navigation Links -->
             <nav class="header-menu-links" id="header-menu-links">
-                <a href="#home" class="menu-link active" id="nav-home-link"><i class="fa-solid fa-house"></i> All Tools</a>
-                <a href="#blogs" class="menu-link" id="nav-blogs-link"><i class="fa-solid fa-book-open"></i> Blogs</a>
+                <a href="#home" class="menu-link active" id="nav-home-link"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
+                <a href="#blogs" class="menu-link" id="nav-blogs-link"><i class="fa-solid fa-book-open"></i> <span data-translate="blogs">Blogs</span></a>
+                <a href="#about" class="menu-link" id="nav-about-link"><i class="fa-solid fa-circle-info"></i> <span data-translate="about">About</span></a>
+                
+                <!-- Customizer controls -->
+                <div class="customizer-wrapper">
+                    <button id="theme-toggle" class="customizer-icon-btn" title="Toggle Light/Dark Mode"><i class="fa-solid fa-moon"></i></button>
+                    <button id="customizer-toggle" class="customizer-icon-btn" title="Customize Accent & Language"><i class="fa-solid fa-palette"></i></button>
+                    
+                    <div id="customizer-dropdown" class="customizer-dropdown hidden">
+                        <div class="customizer-section">
+                            <h5 data-translate="accentColor">Accent Color</h5>
+                            <div class="accent-picker">
+                                <span class="accent-dot dot-indigo active" data-accent="indigo" style="background:#6366f1;"></span>
+                                <span class="accent-dot dot-cyan" data-accent="cyan" style="background:#06b6d4;"></span>
+                                <span class="accent-dot dot-emerald" data-accent="emerald" style="background:#10b981;"></span>
+                                <span class="accent-dot dot-purple" data-accent="purple" style="background:#a855f7;"></span>
+                                <span class="accent-dot dot-orange" data-accent="orange" style="background:#f97316;"></span>
+                                <span class="accent-dot dot-pink" data-accent="pink" style="background:#ec4899;"></span>
+                            </div>
+                        </div>
+                        <div class="customizer-section">
+                            <h5 data-translate="language">Language</h5>
+                            <select id="lang-selector">
+                                <option value="en">English</option>
+                                <option value="hi">हिन्दी</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </nav>
             
             <!-- Mobile Menu Toggle Hamburger -->
@@ -51,8 +81,36 @@
                 <button id="close-drawer-btn" class="drawer-close-x">&times;</button>
             </div>
             <nav class="mobile-drawer-nav">
-                <a href="#home" class="drawer-link"><i class="fa-solid fa-house"></i> All Tools</a>
-                <a href="#blogs" class="drawer-link" id="nav-blogs-drawer-link"><i class="fa-solid fa-book-open"></i> Blogs</a>
+                <a href="#home" class="drawer-link"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
+                <a href="#blogs" class="drawer-link" id="nav-blogs-drawer-link"><i class="fa-solid fa-book-open"></i> <span data-translate="blogs">Blogs</span></a>
+                <a href="#about" class="drawer-link" id="nav-about-drawer-link"><i class="fa-solid fa-circle-info"></i> <span data-translate="about">About</span></a>
+                
+                <div class="mobile-customizer-section" style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
+                        <span data-translate="theme" style="font-weight:600; font-size:0.9rem;">Theme</span>
+                        <button id="mobile-theme-toggle" class="customizer-icon-btn"><i class="fa-solid fa-moon"></i></button>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span data-translate="accentColor" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom: 8px;">Accent Color</span>
+                        <div class="accent-picker" style="display:flex; gap:8px;">
+                            <span class="accent-dot dot-indigo active" data-accent="indigo" style="background:#6366f1; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
+                            <span class="accent-dot dot-cyan" data-accent="cyan" style="background:#06b6d4; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
+                            <span class="accent-dot dot-emerald" data-accent="emerald" style="background:#10b981; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
+                            <span class="accent-dot dot-purple" data-accent="purple" style="background:#a855f7; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
+                            <span class="accent-dot dot-orange" data-accent="orange" style="background:#f97316; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
+                            <span class="accent-dot dot-pink" data-accent="pink" style="background:#ec4899; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <span data-translate="language" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom: 8px;">Language</span>
+                        <select id="mobile-lang-selector" style="width:100%; padding:8px; background:var(--bg-tertiary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:6px;">
+                            <option value="en">English</option>
+                            <option value="hi">हिन्दी</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                        </select>
+                    </div>
+                </div>
             </nav>
         </div>
     </div>
@@ -63,11 +121,11 @@
             <!-- Hero search banner -->
             <section class="hero-search-section">
                 <div class="hero-bg-blur-circle"></div>
-                <h1>Free Web & AI Developer Tools</h1>
-                <p>Search and access 30+ highly-responsive, privacy-first client utilities to speed up your workflow.</p>
+                <h1 data-translate="heroTitle">Free Web & AI Developer Tools</h1>
+                <p data-translate="heroDesc">Search and access 30+ highly-responsive, privacy-first client utilities to speed up your workflow.</p>
                 <div class="search-bar-wrapper">
                     <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" id="tool-search" placeholder="Search for tools (e.g., SQL, JSON, SVG, Regex...)">
+                    <input type="text" id="tool-search" placeholder="Search for tools (e.g., SQL, JSON, SVG, Regex...)" data-translate-placeholder="searchPlaceholder">
                 </div>
             </section>
 
@@ -101,12 +159,31 @@
         <div id="blogs-view" class="container blogs-view hidden">
             <!-- Breadcrumbs -->
             <nav class="breadcrumbs" style="margin-bottom: 24px;">
-                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
                 <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
-                <span class="bc-active">Blogs</span>
+                <span class="bc-active" data-translate="blogs">Blogs</span>
             </nav>
 
             <div id="blogs-content-container"></div>
+        </div>
+
+        <!-- 5. ABOUT VIEW -->
+        <div id="about-view" class="container about-view hidden">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs" style="margin-bottom: 24px;">
+                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
+                <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                <span class="bc-active" data-translate="about">About</span>
+            </nav>
+
+            <section class="about-card glass-panel" style="padding: 40px; border-radius:16px;">
+                <h2 data-translate="aboutTitle" style="font-family: var(--font-heading); font-size: 2rem; font-weight:800; margin-bottom: 20px;">About OmniTool Hub</h2>
+                <div class="about-text-content" style="font-size:1.1rem; line-height:1.75; color:var(--text-secondary);">
+                    <p data-translate="aboutContent">OmniTool Hub is a privacy-first web utilities catalog serving developers with lightning-fast offline compilers, helpers, and formatters. All operations run 100% locally in your browser—no data is ever sent to the server.</p>
+                    <h3 data-translate="aboutPrivacyTitle" style="margin-top:32px; margin-bottom:16px; color:var(--text-primary); font-family:var(--font-heading); font-weight:700;">100% Client-Side Privacy</h3>
+                    <p data-translate="aboutPrivacyDesc">Your code and data are private. Other services send your payloads to third-party APIs for execution. OmniTool Hub performs conversions, formatting, encoding, and calculations directly inside your browser. No cookies, no databases, no server tracking.</p>
+                </div>
+            </section>
         </div>
 
         <!-- 3. DEDICATED TOOL WORKSPACE VIEW -->
@@ -188,30 +265,30 @@
                 <p class="footer-desc-text">Privacy-first web utilities catalog serving developers with lightning-fast offline compilers and robust AI integrations.</p>
             </div>
             <div class="footer-col">
-                <h4>Tool Categories</h4>
+                <h4 data-translate="toolCategories">Tool Categories</h4>
                 <ul class="footer-links-list">
-                    <li><a href="#home"><i class="fa-solid fa-code"></i> Developer Tools</a></li>
-                    <li><a href="#home"><i class="fa-solid fa-robot"></i> AI Utilities</a></li>
-                    <li><a href="#home"><i class="fa-solid fa-image"></i> Design & Media</a></li>
-                    <li><a href="#home"><i class="fa-solid fa-heart-pulse"></i> Niche Utilities</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-code"></i> <span data-translate="devTools">Developer Tools</span></a></li>
+                    <li><a href="#home"><i class="fa-solid fa-robot"></i> <span data-translate="aiUtils">AI Utilities</span></a></li>
+                    <li><a href="#home"><i class="fa-solid fa-image"></i> <span data-translate="designMedia">Design & Media</span></a></li>
+                    <li><a href="#home"><i class="fa-solid fa-heart-pulse"></i> <span data-translate="nicheUtils">Niche Utilities</span></a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4 data-translate="resources">Resources</h4>
                 <ul class="footer-links-list">
-                    <li><a href="#home"><i class="fa-solid fa-circle-info"></i> How it works</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-circle-info"></i> <span data-translate="howItWorks">How it works</span></a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Status</h4>
+                <h4 data-translate="status">Status</h4>
                 <ul class="footer-links-list">
-                    <li><span class="status-badge status-success"><i class="fa-solid fa-circle-check"></i> System Online</span></li>
-                    <li><span class="status-badge status-success"><i class="fa-solid fa-server"></i> API Gateway Live</span></li>
+                    <li><span class="status-badge status-success"><i class="fa-solid fa-circle-check"></i> <span data-translate="systemOnline">System Online</span></span></li>
+                    <li><span class="status-badge status-success"><i class="fa-solid fa-server"></i> <span data-translate="apiGatewayLive">API Gateway Live</span></span></li>
                 </ul>
             </div>
         </div>
         <div class="container footer-sub-bar">
-            <p>&copy; 2026 OmniTool Hub. All rights reserved. Built for professional developer productivity.</p>
+            <p>&copy; 2026 OmniTool Hub. <span data-translate="allRightsReserved">All rights reserved. Built for professional developer productivity.</span></p>
         </div>
     </footer>
 

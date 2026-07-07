@@ -38,6 +38,17 @@ const navBlogsLink = document.getElementById('nav-blogs-link');
 const navBlogsDrawerLink = document.getElementById('nav-blogs-drawer-link');
 const blogsView = document.getElementById('blogs-view');
 const blogsContentContainer = document.getElementById('blogs-content-container');
+const navAboutLink = document.getElementById('nav-about-link');
+const navAboutDrawerLink = document.getElementById('nav-about-drawer-link');
+const aboutView = document.getElementById('about-view');
+
+// Customizer elements
+const themeToggleBtn = document.getElementById('theme-toggle');
+const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+const customizerToggleBtn = document.getElementById('customizer-toggle');
+const customizerDropdown = document.getElementById('customizer-dropdown');
+const langSelector = document.getElementById('lang-selector');
+const mobileLangSelector = document.getElementById('mobile-lang-selector');
 
 // Mobile drawer controls
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -2147,6 +2158,177 @@ function loadToolPage(toolId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Translation Dictionary
+const translations = {
+    en: {
+        home: "Home",
+        blogs: "Blogs",
+        about: "About",
+        heroTitle: "Free Web & AI Developer Tools",
+        heroDesc: "Search and access 30+ highly-responsive, privacy-first client utilities to speed up your workflow.",
+        searchPlaceholder: "Search for tools (e.g., SQL, JSON, SVG, Regex...)",
+        aboutTitle: "About OmniTool Hub",
+        aboutContent: "OmniTool Hub is a privacy-first web utilities catalog serving developers with lightning-fast offline compilers, helpers, and formatters. All operations run 100% locally in your browser—no data is ever sent to the server.",
+        aboutPrivacyTitle: "100% Client-Side Privacy",
+        aboutPrivacyDesc: "Your code and data are private. Other services send your payloads to third-party APIs for execution. OmniTool Hub performs conversions, formatting, encoding, and calculations directly inside your browser. No cookies, no databases, no server tracking.",
+        accentColor: "Accent Color",
+        language: "Language",
+        theme: "Theme",
+        toolCategories: "Tool Categories",
+        resources: "Resources",
+        status: "Status",
+        systemOnline: "System Online",
+        apiGatewayLive: "API Gateway Live",
+        allRightsReserved: "All rights reserved. Built for professional developer productivity.",
+        devTools: "Developer Tools",
+        aiUtils: "AI Utilities",
+        designMedia: "Design & Media",
+        nicheUtils: "Niche Utilities",
+        howItWorks: "How it works"
+    },
+    hi: {
+        home: "मुख्य पृष्ठ",
+        blogs: "ब्लॉग",
+        about: "हमारे बारे में",
+        heroTitle: "मुफ़्त वेब और एआई डेवलपर टूल्स",
+        heroDesc: "अपने वर्कफ़्लो को तेज़ करने के लिए 30+ अत्यधिक प्रतिक्रियाशील, गोपनीयता-प्रथम क्लाइंट उपयोगिताओं को खोजें और एक्सेस करें।",
+        searchPlaceholder: "टूल्स खोजें (जैसे, SQL, JSON, SVG, Regex...)",
+        aboutTitle: "ओम्नीटूल हब के बारे में",
+        aboutContent: "ओम्नीटूल हब एक गोपनीयता-प्रथम वेब उपयोगिता कैटलॉग है जो डेवलपर्स को बिजली की तेजी से ऑफ़लाइन कंपाइलर, सहायक और फ़ॉर्मेटर प्रदान करता है। सभी ऑपरेशन आपके ब्राउज़र में 100% स्थानीय रूप से चलते हैं—कोई भी डेटा सर्वर पर नहीं भेजा जाता है।",
+        aboutPrivacyTitle: "100% क्लाइंट-साइड गोपनीयता",
+        aboutPrivacyDesc: "आपका कोड और डेटा निजी हैं। अन्य सेवाएं निष्पादन के लिए आपके पेलोड को तीसरे पक्ष के एपीआई पर भेजती हैं। ओम्नीटूल हब सीधे आपके ब्राउज़र के भीतर रूपांतरण, स्वरूपण, एन्कोडिंग और गणना करता है। कोई कुकीज़ नहीं, कोई डेटाबेस नहीं, कोई सर्वर ट्रैकिंग नहीं।",
+        accentColor: "एक्सेन्ट रंग",
+        language: "भाषा",
+        theme: "थीम",
+        toolCategories: "टूल श्रेणियां",
+        resources: "संसाधन",
+        status: "स्थिति",
+        systemOnline: "सिस्टम ऑनलाइन",
+        apiGatewayLive: "एपीआई गेटवे लाइव",
+        allRightsReserved: "सर्वाधिकार सुरक्षित। पेशेवर डेवलपर उत्पादकता के लिए निर्मित।",
+        devTools: "डेवलपर टूल्स",
+        aiUtils: "एआई उपयोगिताएँ",
+        designMedia: "डिजाइन और मीडिया",
+        nicheUtils: "आला उपयोगिताएँ",
+        howItWorks: "यह काम किस प्रकार करता है"
+    },
+    es: {
+        home: "Inicio",
+        blogs: "Blogs",
+        about: "Acerca de",
+        heroTitle: "Herramientas gratuitas de desarrollo web y IA",
+        heroDesc: "Busque y acceda a más de 30 utilidades de cliente altamente receptivas y que priorizan la privacidad para acelerar su flujo de trabajo.",
+        searchPlaceholder: "Buscar herramientas (ej. SQL, JSON, SVG, Regex...)",
+        aboutTitle: "Acerca de OmniTool Hub",
+        aboutContent: "OmniTool Hub es un catálogo de utilidades web que prioriza la privacidad, diseñado para desarrolladores con compiladores y formateadores rápidos fuera de línea. Todas las operaciones se ejecutan 100% localmente en su navegador, nunca se envían datos al servidor.",
+        aboutPrivacyTitle: "100% Privacidad del Cliente",
+        aboutPrivacyDesc: "Su código y datos son privados. Otros servicios envían sus cargas útiles a API de terceros para su ejecución. OmniTool Hub realiza conversiones, formateo, codificación y cálculos directamente dentro de su navegador. Sin cookies, sin bases de datos, sin seguimiento del servidor.",
+        accentColor: "Color de Acento",
+        language: "Idioma",
+        theme: "Tema",
+        toolCategories: "Categorías",
+        resources: "Recursos",
+        status: "Estado",
+        systemOnline: "Sistema en línea",
+        apiGatewayLive: "Pasarela API activa",
+        allRightsReserved: "Todos los derechos reservados. Diseñado para la productividad del desarrollador profesional.",
+        devTools: "Herramientas de Desarrollador",
+        aiUtils: "Utilidades de IA",
+        designMedia: "Diseño y Medios",
+        nicheUtils: "Utilidades de Nicho",
+        howItWorks: "Cómo funciona"
+    },
+    fr: {
+        home: "Accueil",
+        blogs: "Blogs",
+        about: "À propos",
+        heroTitle: "Outils de développement Web & IA gratuits",
+        heroDesc: "Recherchez et accédez à plus de 30 utilitaires client hautement réactifs et respectueux de la vie privée pour accélérer votre flux de travail.",
+        searchPlaceholder: "Rechercher des outils (ex. SQL, JSON, SVG, Regex...)",
+        aboutTitle: "À propos d'OmniTool Hub",
+        aboutContent: "OmniTool Hub est un catalogue d'utilitaires web respectueux de la vie privée pour les développeurs, proposant des compilateurs et formateurs hors ligne ultra-rapides. Toutes les opérations s'exécutent localement à 100% dans votre navigateur — aucune donnée n'est envoyée au serveur.",
+        aboutPrivacyTitle: "100% Confidentialité Client",
+        aboutPrivacyDesc: "Votre code et vos données sont privés. D'autres services envoient vos charges à des API tierces pour exécution. OmniTool Hub effectue les conversions, le formatage, l'encodage et les calculs directement dans votre navigateur. Pas de cookies, pas de base de données, pas de suivi serveur.",
+        accentColor: "Couleur d'accent",
+        language: "Langue",
+        theme: "Thème",
+        toolCategories: "Catégories d'outils",
+        resources: "Ressources",
+        status: "Statut",
+        systemOnline: "Système en ligne",
+        apiGatewayLive: "Passerelle API active",
+        allRightsReserved: "Tous droits réservés. Conçu pour la productivité des développeurs professionnels.",
+        devTools: "Outils de Développement",
+        aiUtils: "Utilitaires d'IA",
+        designMedia: "Design & Médias",
+        nicheUtils: "Utilitaires Spécifiques",
+        howItWorks: "Comment ça marche"
+    }
+};
+
+let currentLang = localStorage.getItem('vibeprompt_lang') || 'en';
+let currentTheme = localStorage.getItem('vibeprompt_theme') || 'dark';
+let currentAccent = localStorage.getItem('vibeprompt_accent') || 'indigo';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('vibeprompt_lang', lang);
+    if (langSelector) langSelector.value = lang;
+    if (mobileLangSelector) mobileLangSelector.value = lang;
+
+    document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerText = translations[lang][key];
+        }
+    });
+
+    document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-translate-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+
+    // Re-render tools catalog with new language details if open
+    if (!catalogView.classList.contains('hidden')) {
+        renderCatalog(toolSearchInput.value);
+    }
+}
+
+function setTheme(theme) {
+    currentTheme = theme;
+    localStorage.setItem('vibeprompt_theme', theme);
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+        if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        if (mobileThemeToggleBtn) mobileThemeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    } else {
+        document.body.classList.remove('light-theme');
+        if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        if (mobileThemeToggleBtn) mobileThemeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+}
+
+function setAccent(accent) {
+    currentAccent = accent;
+    localStorage.setItem('vibeprompt_accent', accent);
+    
+    // Remove old accent classes
+    document.body.classList.remove('accent-indigo', 'accent-cyan', 'accent-emerald', 'accent-purple', 'accent-orange', 'accent-pink');
+    // Add new accent class
+    document.body.classList.add(`accent-${accent}`);
+
+    // Update active dots in picker
+    document.querySelectorAll('.accent-dot').forEach(dot => {
+        if (dot.getAttribute('data-accent') === accent) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
 // Init hash change routing
 function route() {
     const hash = location.hash;
@@ -2156,12 +2338,15 @@ function route() {
     if (navApisLink) navApisLink.classList.remove('active');
     if (navBlogsLink) navBlogsLink.classList.remove('active');
     if (navBlogsDrawerLink) navBlogsDrawerLink.classList.remove('active');
+    if (navAboutLink) navAboutLink.classList.remove('active');
+    if (navAboutDrawerLink) navAboutDrawerLink.classList.remove('active');
 
     if (!hash || hash === '#home' || hash === '') {
         navHomeLink.classList.add('active');
         catalogView.classList.remove('hidden');
         apiDirectoryView.classList.add('hidden');
         if (blogsView) blogsView.classList.add('hidden');
+        if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
         renderCatalog(toolSearchInput.value);
     } else if (hash === '#apis') {
@@ -2171,6 +2356,7 @@ function route() {
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
         catalogView.classList.add('hidden');
         apiDirectoryView.classList.add('hidden');
+        if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
         if (blogsView) {
             blogsView.classList.remove('hidden');
@@ -2181,15 +2367,25 @@ function route() {
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
         catalogView.classList.add('hidden');
         apiDirectoryView.classList.add('hidden');
+        if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
         if (blogsView) {
             blogsView.classList.remove('hidden');
             const blogId = hash.replace('#blog-', '');
             renderBlogPost(blogId);
         }
+    } else if (hash === '#about') {
+        if (navAboutLink) navAboutLink.classList.add('active');
+        if (navAboutDrawerLink) navAboutDrawerLink.classList.add('active');
+        catalogView.classList.add('hidden');
+        apiDirectoryView.classList.add('hidden');
+        if (blogsView) blogsView.classList.add('hidden');
+        toolView.classList.add('hidden');
+        if (aboutView) aboutView.classList.remove('hidden');
     } else if (hash.startsWith('#tool-')) {
         const id = hash.replace('#tool-', '');
         if (blogsView) blogsView.classList.add('hidden');
+        if (aboutView) aboutView.classList.add('hidden');
         loadToolPage(id);
     }
 }
@@ -2213,6 +2409,55 @@ document.getElementById('close-drawer-btn').addEventListener('click', closeDrawe
 drawerLinks.forEach(link => {
     link.addEventListener('click', closeDrawer);
 });
+
+// Customizer panel bindings
+if (customizerToggleBtn) {
+    customizerToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        customizerDropdown.classList.toggle('hidden');
+    });
+}
+
+document.addEventListener('click', (e) => {
+    if (customizerDropdown && !customizerDropdown.classList.contains('hidden')) {
+        if (!customizerDropdown.contains(e.target) && e.target !== customizerToggleBtn) {
+            customizerDropdown.classList.add('hidden');
+        }
+    }
+});
+
+document.querySelectorAll('.accent-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+        const accent = dot.getAttribute('data-accent');
+        setAccent(accent);
+    });
+});
+
+if (langSelector) {
+    langSelector.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
+    });
+}
+if (mobileLangSelector) {
+    mobileLangSelector.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
+        closeDrawer();
+    });
+}
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
+}
+if (mobileThemeToggleBtn) {
+    mobileThemeToggleBtn.addEventListener('click', () => {
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        closeDrawer();
+    });
+}
 
 // API Settings Overlay Panels Toggle
 if (toggleSettingsBtn) {
@@ -2265,6 +2510,9 @@ saveSettingsBtn.addEventListener('click', () => {
 
 // Initial boot
 route();
+setLanguage(currentLang);
+setTheme(currentTheme);
+setAccent(currentAccent);
 if (apiKey) {
     keyStatusText.className = 'status-badge status-success';
     keyStatusText.innerText = 'Connected';
