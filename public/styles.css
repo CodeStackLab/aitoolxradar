@@ -2055,3 +2055,10 @@ html[dir="rtl"] .sidebar-launcher-btn {
     border: 1px solid var(--border-color);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
+
+.more-tools-btn:hover {
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-color: var(--accent-indigo) !important;
+    color: var(--text-primary) !important;
+    transform: translateY(-1px);
+}

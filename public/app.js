@@ -2370,10 +2370,10 @@ function renderCatalog(searchQuery = '', categoryFilter = '') {
         `;
         
         const grid = section.querySelector('.category-row-grid');
-        items.forEach(it => {
+        items.forEach((it, idx) => {
             const card = document.createElement('a');
             card.href = `#tool-${it.id}`;
-            card.className = 'tool-card-box';
+            card.className = 'tool-card-box' + (idx >= 3 ? ' hidden-tool-card hidden' : '');
             card.innerHTML = `
                 <div class="tool-card-header">
                     <div class="tool-card-category">${it.category}</div>
@@ -2390,6 +2390,39 @@ function renderCatalog(searchQuery = '', categoryFilter = '') {
             `;
             grid.appendChild(card);
         });
+        
+        if (items.length > 3) {
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'more-tools-btn';
+            toggleBtn.style.cssText = "grid-column: 1/-1; margin: 16px auto 0 auto; display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px dashed var(--border-color); color: var(--text-secondary); padding: 12px 24px; border-radius: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: all var(--transition-fast);";
+            toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i> <span>More Tools (${items.length - 3})</span>`;
+            
+            toggleBtn.addEventListener('click', () => {
+                const hiddenCards = grid.querySelectorAll('.hidden-tool-card');
+                const isExpanded = toggleBtn.getAttribute('data-expanded') === 'true';
+                
+                hiddenCards.forEach(c => {
+                    if (isExpanded) {
+                        c.classList.add('hidden');
+                    } else {
+                        c.classList.remove('hidden');
+                    }
+                });
+                
+                if (isExpanded) {
+                    toggleBtn.setAttribute('data-expanded', 'false');
+                    toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i> <span>More Tools (${items.length - 3})</span>`;
+                    toggleBtn.style.borderColor = "var(--border-color)";
+                    toggleBtn.style.color = "var(--text-secondary)";
+                } else {
+                    toggleBtn.setAttribute('data-expanded', 'true');
+                    toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-up"></i> <span>Less Tools</span>`;
+                    toggleBtn.style.borderColor = "var(--accent-indigo)";
+                    toggleBtn.style.color = "var(--text-primary)";
+                }
+            });
+            section.appendChild(toggleBtn);
+        }
         categoriesContainer.appendChild(section);
     }
 
