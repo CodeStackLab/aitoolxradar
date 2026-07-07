@@ -1,8 +1,8 @@
 /* Design Tokens & Variables */
 :root {
-    --bg-primary: #07070b;
-    --bg-secondary: #0e0e14;
-    --bg-tertiary: #161622;
+    --bg-primary: #0a0b10;
+    --bg-secondary: #10121a;
+    --bg-tertiary: #161a26;
     
     --border-color: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(99, 102, 241, 0.35);
@@ -101,7 +101,7 @@ html, body {
     gap: 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1180px) {
     .header-menu-links {
         display: flex;
     }
@@ -178,7 +178,7 @@ html, body {
     color: var(--accent-indigo);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1180px) {
     .mobile-menu-toggle-btn {
         display: none;
     }
@@ -732,7 +732,8 @@ html, body {
     gap: 8px;
     font-family: var(--font-heading);
     font-weight: 700;
-    border-radius: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
     letter-spacing: -0.01em;
@@ -755,6 +756,10 @@ html, body {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
 }
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0) scale(0.985);
+    box-shadow: 0 3px 10px rgba(99, 102, 241, 0.2);
+}
 
 .btn-accent {
     background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
@@ -764,6 +769,10 @@ html, body {
 .btn-accent:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(168, 85, 247, 0.35);
+}
+.btn-accent:active:not(:disabled) {
+    transform: translateY(0) scale(0.985);
+    box-shadow: 0 3px 10px rgba(168, 85, 247, 0.2);
 }
 
 .btn-outline {
