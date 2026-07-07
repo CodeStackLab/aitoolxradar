@@ -1892,7 +1892,7 @@ html[dir="rtl"] .sidebar-launcher-btn {
 
 .menu-dropdown-card {
     position: absolute;
-    top: calc(100% + 12px);
+    top: 100%;
     right: 0;
     width: 290px;
     background: rgba(16, 18, 26, 0.95);
@@ -1907,6 +1907,16 @@ html[dir="rtl"] .sidebar-launcher-btn {
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
     z-index: 1000;
+}
+
+.menu-dropdown-card::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 0;
+    right: 0;
+    height: 24px;
+    background: transparent;
 }
 
 .menu-dropdown-wrapper:hover .menu-dropdown-card,
