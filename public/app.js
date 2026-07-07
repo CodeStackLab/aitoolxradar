@@ -42,13 +42,22 @@ const navAboutLink = document.getElementById('nav-about-link');
 const navAboutDrawerLink = document.getElementById('nav-about-drawer-link');
 const aboutView = document.getElementById('about-view');
 
-// Customizer elements
-const themeToggleBtn = document.getElementById('theme-toggle');
-const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
-const customizerToggleBtn = document.getElementById('customizer-toggle');
-const customizerDropdown = document.getElementById('customizer-dropdown');
-const langSelector = document.getElementById('lang-selector');
-const mobileLangSelector = document.getElementById('mobile-lang-selector');
+// Category navigation links
+const navCatDevTools = document.getElementById('nav-cat-developer-tools');
+const navCatAiUtils = document.getElementById('nav-cat-ai-utilities');
+const navCatDesignMedia = document.getElementById('nav-cat-design-media');
+const headerLangSelector = document.getElementById('header-lang-selector');
+
+// UI/UX Customizer Sidebar selectors
+const uiuxSidebar = document.getElementById('uiux-sidebar');
+const sidebarLauncherBtn = document.getElementById('sidebar-launcher-btn');
+const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+const densitySelector = document.getElementById('density-selector');
+const cornersSelector = document.getElementById('corners-selector');
+const fontSelector = document.getElementById('font-selector');
+const blurToggle = document.getElementById('blur-toggle');
+const rtlToggle = document.getElementById('rtl-toggle');
 
 // Mobile drawer controls
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -1957,7 +1966,7 @@ async function renderApiDirectory() {
 }
 
 // Render Homepage Catalog with category sections
-function renderCatalog(searchQuery = '') {
+function renderCatalog(searchQuery = '', categoryFilter = '') {
     categoriesContainer.innerHTML = '';
     
     const groups = {};
@@ -1965,7 +1974,8 @@ function renderCatalog(searchQuery = '') {
         if (!groups[t.category]) groups[t.category] = [];
         const matchesSearch = t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                               t.description.toLowerCase().includes(searchQuery.toLowerCase());
-        if (matchesSearch) {
+        const matchesCategory = !categoryFilter || t.category.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-').trim() === categoryFilter.toLowerCase().trim();
+        if (matchesSearch && matchesCategory) {
             groups[t.category].push(t);
         }
     });
@@ -2157,8 +2167,6 @@ function loadToolPage(toolId) {
     // Scroll page back to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// Translation Dictionary
 const translations = {
     en: {
         home: "Home",
@@ -2167,10 +2175,10 @@ const translations = {
         heroTitle: "Free Web & AI Developer Tools",
         heroDesc: "Search and access 30+ highly-responsive, privacy-first client utilities to speed up your workflow.",
         searchPlaceholder: "Search for tools (e.g., SQL, JSON, SVG, Regex...)",
-        aboutTitle: "About OmniTool Hub",
-        aboutContent: "OmniTool Hub is a privacy-first web utilities catalog serving developers with lightning-fast offline compilers, helpers, and formatters. All operations run 100% locally in your browser—no data is ever sent to the server.",
+        aboutTitle: "About AIToolXRadar",
+        aboutContent: "AIToolXRadar is a privacy-first web utilities catalog serving developers with lightning-fast offline compilers, helpers, and formatters. All operations run 100% locally in your browser—no data is ever sent to the server.",
         aboutPrivacyTitle: "100% Client-Side Privacy",
-        aboutPrivacyDesc: "Your code and data are private. Other services send your payloads to third-party APIs for execution. OmniTool Hub performs conversions, formatting, encoding, and calculations directly inside your browser. No cookies, no databases, no server tracking.",
+        aboutPrivacyDesc: "Your code and data are private. Other services send your payloads to third-party APIs for execution. AIToolXRadar performs conversions, formatting, encoding, and calculations directly inside your browser. No cookies, no databases, no server tracking.",
         accentColor: "Accent Color",
         language: "Language",
         theme: "Theme",
@@ -2184,7 +2192,27 @@ const translations = {
         aiUtils: "AI Utilities",
         designMedia: "Design & Media",
         nicheUtils: "Niche Utilities",
-        howItWorks: "How it works"
+        howItWorks: "How it works",
+        multiUiUx: "Multi UI/UX Customizer",
+        themePresets: "Dynamic Theme Presets",
+        darkSlate: "Dark Slate",
+        pureLight: "Pure Light",
+        sunsetGlow: "Sunset Glow",
+        cyberOcean: "Cyber Ocean",
+        crimsonWine: "Crimson Wine",
+        emeraldForest: "Emerald Forest",
+        layoutMechanics: "Spacing & Layout Mechanics",
+        layoutDensity: "Layout Density",
+        cozyMode: "Cozy Mode (Default)",
+        compactMode: "Compact Mode (Data Intensive)",
+        borderCorners: "Border Corner Profiles",
+        roundedCorners: "Rounded Corners (Default 12px)",
+        sharpCorners: "Sharp Corners",
+        typographyEffects: "Typography & Extra Effects",
+        primaryTypography: "Primary Typography Preset",
+        enableBlur: "Enable Glassmorphic Backdrop Blur",
+        rtlSupport: "Language Direction",
+        enableRtl: "Enable RTL (Right-to-Left) Layout"
     },
     hi: {
         home: "मुख्य पृष्ठ",
@@ -2193,10 +2221,10 @@ const translations = {
         heroTitle: "मुफ़्त वेब और एआई डेवलपर टूल्स",
         heroDesc: "अपने वर्कफ़्लो को तेज़ करने के लिए 30+ अत्यधिक प्रतिक्रियाशील, गोपनीयता-प्रथम क्लाइंट उपयोगिताओं को खोजें और एक्सेस करें।",
         searchPlaceholder: "टूल्स खोजें (जैसे, SQL, JSON, SVG, Regex...)",
-        aboutTitle: "ओम्नीटूल हब के बारे में",
-        aboutContent: "ओम्नीटूल हब एक गोपनीयता-प्रथम वेब उपयोगिता कैटलॉग है जो डेवलपर्स को बिजली की तेजी से ऑफ़लाइन कंपाइलर, सहायक और फ़ॉर्मेटर प्रदान करता है। सभी ऑपरेशन आपके ब्राउज़र में 100% स्थानीय रूप से चलते हैं—कोई भी डेटा सर्वर पर नहीं भेजा जाता है।",
+        aboutTitle: "AIToolXRadar के बारे में",
+        aboutContent: "AIToolXRadar एक गोपनीयता-प्रथम वेब उपयोगिता कैटलॉग है जो डेवलपर्स को बिजली की तेजी से ऑफ़लाइन कंपाइलर, सहायक और फ़ॉर्मेटर प्रदान करता है। सभी ऑपरेशन आपके ब्राउज़र में 100% स्थानीय रूप से चलते हैं—कोई भी डेटा सर्वर पर नहीं भेजा जाता है।",
         aboutPrivacyTitle: "100% क्लाइंट-साइड गोपनीयता",
-        aboutPrivacyDesc: "आपका कोड और डेटा निजी हैं। अन्य सेवाएं निष्पादन के लिए आपके पेलोड को तीसरे पक्ष के एपीआई पर भेजती हैं। ओम्नीटूल हब सीधे आपके ब्राउज़र के भीतर रूपांतरण, स्वरूपण, एन्कोडिंग और गणना करता है। कोई कुकीज़ नहीं, कोई डेटाबेस नहीं, कोई सर्वर ट्रैकिंग नहीं।",
+        aboutPrivacyDesc: "आपका कोड और डेटा निजी हैं। अन्य सेवाएं निष्पादन के लिए आपके पेलोड को तीसरे पक्ष के एपीआई पर भेजती हैं। AIToolXRadar सीधे आपके ब्राउज़र के भीतर रूपांतरण, स्वरूपण, एन्कोडिंग और गणना करता है। कोई कुकीज़ नहीं, कोई डेटाबेस नहीं, कोई सर्वर ट्रैकिंग नहीं।",
         accentColor: "एक्सेन्ट रंग",
         language: "भाषा",
         theme: "थीम",
@@ -2210,7 +2238,27 @@ const translations = {
         aiUtils: "एआई उपयोगिताएँ",
         designMedia: "डिजाइन और मीडिया",
         nicheUtils: "आला उपयोगिताएँ",
-        howItWorks: "यह काम किस प्रकार करता है"
+        howItWorks: "यह काम किस प्रकार करता है",
+        multiUiUx: "मल्टी यूआई/यूएक्स कस्टमाइज़र",
+        themePresets: "डायनामिक थीम प्रीसेट",
+        darkSlate: "डार्क स्लेट",
+        pureLight: "प्योर लाइट",
+        sunsetGlow: "सनसेट ग्लो",
+        cyberOcean: "साइबर ओशन",
+        crimsonWine: "क्रिमसन वाइन",
+        emeraldForest: "एमराल्ड फॉरेस्ट",
+        layoutMechanics: "अंतर और लेआउट लेआउट",
+        layoutDensity: "लेआउट घनत्व",
+        cozyMode: "कोजी मोड (डिफ़ॉल्ट)",
+        compactMode: "कॉम्पैक्ट मोड (डेटा सघन)",
+        borderCorners: "बॉर्डर कॉर्नर प्रोफाइल",
+        roundedCorners: "गोल कोने (डिफ़ॉल्ट 12px)",
+        sharpCorners: "तीखे कोने",
+        typographyEffects: "टाइपोोग्राफी और अतिरिक्त प्रभाव",
+        primaryTypography: "प्राथमिक टाइपोग्राफी प्रीसेट",
+        enableBlur: "ग्लासमॉर्फिक बैकड्रॉप ब्लर सक्षम करें",
+        rtlSupport: "भाषा की दिशा",
+        enableRtl: "RTL (दाएं से बाएं) लेआउट सक्षम करें"
     },
     es: {
         home: "Inicio",
@@ -2219,10 +2267,10 @@ const translations = {
         heroTitle: "Herramientas gratuitas de desarrollo web y IA",
         heroDesc: "Busque y acceda a más de 30 utilidades de cliente altamente receptivas y que priorizan la privacidad para acelerar su flujo de trabajo.",
         searchPlaceholder: "Buscar herramientas (ej. SQL, JSON, SVG, Regex...)",
-        aboutTitle: "Acerca de OmniTool Hub",
-        aboutContent: "OmniTool Hub es un catálogo de utilidades web que prioriza la privacidad, diseñado para desarrolladores con compiladores y formateadores rápidos fuera de línea. Todas las operaciones se ejecutan 100% localmente en su navegador, nunca se envían datos al servidor.",
+        aboutTitle: "Acerca de AIToolXRadar",
+        aboutContent: "AIToolXRadar es un catálogo de utilidades web que prioriza la privacidad, diseñado para desarrolladores con compiladores y formateadores rápidos fuera de línea. Todas las operaciones se ejecutan 100% localmente en su navegador, nunca se envían datos al servidor.",
         aboutPrivacyTitle: "100% Privacidad del Cliente",
-        aboutPrivacyDesc: "Su código y datos son privados. Otros servicios envían sus cargas útiles a API de terceros para su ejecución. OmniTool Hub realiza conversiones, formateo, codificación y cálculos directamente dentro de su navegador. Sin cookies, sin bases de datos, sin seguimiento del servidor.",
+        aboutPrivacyDesc: "Su código y datos son privados. Otros servicios envían sus cargas útiles a API de terceros para su ejecución. AIToolXRadar realiza conversiones, formateo, codificación y cálculos directamente dentro de su navegador. Sin cookies, sin bases de datos, sin seguimiento del servidor.",
         accentColor: "Color de Acento",
         language: "Idioma",
         theme: "Tema",
@@ -2236,7 +2284,27 @@ const translations = {
         aiUtils: "Utilidades de IA",
         designMedia: "Diseño y Medios",
         nicheUtils: "Utilidades de Nicho",
-        howItWorks: "Cómo funciona"
+        howItWorks: "Cómo funciona",
+        multiUiUx: "Personalizador Multi UI/UX",
+        themePresets: "Ajustes Preestablecidos Temáticos",
+        darkSlate: "Pizarra Oscura",
+        pureLight: "Luz Pura",
+        sunsetGlow: "Brillo del Atardecer",
+        cyberOcean: "Océano Cyber",
+        crimsonWine: "Vino Carmesí",
+        emeraldForest: "Bosque de Esmeralda",
+        layoutMechanics: "Mecánica de Espaciado y Diseño",
+        layoutDensity: "Densidad de Diseño",
+        cozyMode: "Modo Cómodo (Predeterminado)",
+        compactMode: "Modo Compacto (Intensivo de Datos)",
+        borderCorners: "Perfiles de Esquina de Borde",
+        roundedCorners: "Esquinas Redondeadas (Predeterminado 12px)",
+        sharpCorners: "Esquinas Afiladas",
+        typographyEffects: "Tipografía y Efectos Extra",
+        primaryTypography: "Ajuste Preestablecido de Tipografía",
+        enableBlur: "Habilitar Desenfoque de Fondo Glassmorphic",
+        rtlSupport: "Dirección del Idioma",
+        enableRtl: "Habilitar Diseño RTL (Derecha a Izquierda)"
     },
     fr: {
         home: "Accueil",
@@ -2245,10 +2313,10 @@ const translations = {
         heroTitle: "Outils de développement Web & IA gratuits",
         heroDesc: "Recherchez et accédez à plus de 30 utilitaires client hautement réactifs et respectueux de la vie privée pour accélérer votre flux de travail.",
         searchPlaceholder: "Rechercher des outils (ex. SQL, JSON, SVG, Regex...)",
-        aboutTitle: "À propos d'OmniTool Hub",
-        aboutContent: "OmniTool Hub est un catalogue d'utilitaires web respectueux de la vie privée pour les développeurs, proposant des compilateurs et formateurs hors ligne ultra-rapides. Toutes les opérations s'exécutent localement à 100% dans votre navigateur — aucune donnée n'est envoyée au serveur.",
+        aboutTitle: "À propos de AIToolXRadar",
+        aboutContent: "AIToolXRadar est un catalogue d'utilitaires web respectueux de la vie privée pour les développeurs, proposant des compilateurs et formateurs hors ligne ultra-rapides. Toutes les opérations s'exécutent localement à 100% dans votre navigateur — aucune donnée n'est envoyée au serveur.",
         aboutPrivacyTitle: "100% Confidentialité Client",
-        aboutPrivacyDesc: "Votre code et vos données sont privés. D'autres services envoient vos charges à des API tierces pour exécution. OmniTool Hub effectue les conversions, le formatage, l'encodage et les calculs directement dans votre navigateur. Pas de cookies, pas de base de données, pas de suivi serveur.",
+        aboutPrivacyDesc: "Votre code et vos données sont privés. D'autres services envoient vos charges à des API tierces pour exécution. AIToolXRadar effectue les conversions, le formatage, l'encodage et les calculs directement dans votre navigateur. Pas de cookies, pas de base de données, pas de suivi serveur.",
         accentColor: "Couleur d'accent",
         language: "Langue",
         theme: "Thème",
@@ -2262,20 +2330,90 @@ const translations = {
         aiUtils: "Utilitaires d'IA",
         designMedia: "Design & Médias",
         nicheUtils: "Utilitaires Spécifiques",
-        howItWorks: "Comment ça marche"
+        howItWorks: "Comment ça marche",
+        multiUiUx: "Personnaliseur Multi UI/UX",
+        themePresets: "Présélections de Thèmes Dynamiques",
+        darkSlate: "Ardoise Foncée",
+        pureLight: "Lumière Pure",
+        sunsetGlow: "Lueur du Coucher de Soleil",
+        cyberOcean: "Océan Cyber",
+        crimsonWine: "Vin Cramoisi",
+        emeraldForest: "Forêt d'Émeraude",
+        layoutMechanics: "Mécanique d'Espacement et de Mise en Page",
+        layoutDensity: "Densité de Mise en Page",
+        cozyMode: "Mode Confortable (Par Défaut)",
+        compactMode: "Mode Compact (Intensif en Données)",
+        borderCorners: "Profils d'Angle de Bordure",
+        roundedCorners: "Coins Arrondis (Par Défaut 12px)",
+        sharpCorners: "Coins Pointus",
+        typographyEffects: "Typographie et Effets Supplémentaires",
+        primaryTypography: "Présélection Typographique Principale",
+        enableBlur: "Activer le Flou d'Arrière-plan Glassmorphic",
+        rtlSupport: "Direction de la Langue",
+        enableRtl: "Activer la Mise en Page RTL (Droite à Gauche)"
+    },
+    ar: {
+        home: "الرئيسية",
+        blogs: "المدونات",
+        about: "حول",
+        heroTitle: "أدوات مطوري الويب والذكاء الاصطناعي المجانية",
+        heroDesc: "ابحث عن أكثر من 30 أداة مساعدة للعملاء سريعة الاستجابة وذات خصوصية عالية واستخدمها لتسريع سير عملك.",
+        searchPlaceholder: "ابحث عن أدوات (مثال: SQL، JSON، SVG، Regex...)",
+        aboutTitle: "حول AIToolXRadar",
+        aboutContent: "AIToolXRadar هو كتالوج أدوات ويب يركز على الخصوصية ويخدم المطورين بمجمعين ومساعدين ومنسقين غير متصلين بالإنترنت بسرعة البرق. تعمل جميع العمليات محليًا بنسبة 100٪ في متصفحك - ولا يتم إرسال أي بيانات إلى الخادم.",
+        aboutPrivacyTitle: "خصوصية جانب العميل 100٪",
+        aboutPrivacyDesc: "كودك وبياناتك خاصة. ترسل الخدمات الأخرى حمولاتك إلى واجهات برمجة تطبيقات تابعة لجهات خارجية لتنفيذها. يقوم AIToolXRadar بإجراء التحويلات والتنسيق والترميز والحسابات مباشرة داخل متصفحك. لا توجد ملفات تعريف ارتباط ولا قواعد بيانات ولا تتبع خادم.",
+        accentColor: "لون التمييز",
+        language: "اللغة",
+        theme: "المظهر",
+        toolCategories: "فئات الأدوات",
+        resources: "الموارد",
+        status: "الحالة",
+        systemOnline: "النظام متصل",
+        apiGatewayLive: "بوابة API نشطة",
+        allRightsReserved: "كل الحقوق محفوظة. تم إنشاؤه لإنتاجية المطورين المحترفين.",
+        devTools: "أدوات المطور",
+        aiUtils: "أدوات الذكاء الاصطناعي",
+        designMedia: "التصميم والوسائط",
+        nicheUtils: "أدوات متخصصة",
+        howItWorks: "كيف يعمل",
+        multiUiUx: "واجهة وتصميم متعدد",
+        themePresets: "سمات الألوان الديناميكية",
+        darkSlate: "لائحي داكن",
+        pureLight: "أبيض ناصع",
+        sunsetGlow: "وهج الغروب",
+        cyberOcean: "محيط سيبراني",
+        crimsonWine: "نبيذ قرمزي",
+        emeraldForest: "غابة الزمرد",
+        layoutMechanics: "ميكانيكا التباعد والتخطيط",
+        layoutDensity: "كثافة التخطيط",
+        cozyMode: "الوضع المريح (افتراضي)",
+        compactMode: "الوضع المدمج (مكثف)",
+        borderCorners: "زوايا الحدود",
+        roundedCorners: "زوايا مستديرة (12 بكسل)",
+        sharpCorners: "زوايا حادة",
+        typographyEffects: "الخطوط والمؤثرات الإضافية",
+        primaryTypography: "الخط الأساسي",
+        enableBlur: "تفعيل ضبابية الخلفية الزجاجية",
+        rtlSupport: "اتجاه اللغة",
+        enableRtl: "تفعيل تخطيط RTL (من اليمين لليسار)"
     }
 };
 
 let currentLang = localStorage.getItem('vibeprompt_lang') || 'en';
-let currentTheme = localStorage.getItem('vibeprompt_theme') || 'dark';
-let currentAccent = localStorage.getItem('vibeprompt_accent') || 'indigo';
+let currentPreset = localStorage.getItem('vibeprompt_preset') || 'dark-slate';
+let currentDensity = localStorage.getItem('vibeprompt_density') || 'cozy';
+let currentCorners = localStorage.getItem('vibeprompt_corners') || 'rounded';
+let currentFont = localStorage.getItem('vibeprompt_font') || 'inter';
+let currentBlur = localStorage.getItem('vibeprompt_blur') !== 'false';
+let currentRtl = localStorage.getItem('vibeprompt_rtl') === 'true';
 
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('vibeprompt_lang', lang);
-    if (langSelector) langSelector.value = lang;
-    if (mobileLangSelector) mobileLangSelector.value = lang;
+    if (headerLangSelector) headerLangSelector.value = lang;
 
+    // Apply translation text content
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
@@ -2283,6 +2421,7 @@ function setLanguage(lang) {
         }
     });
 
+    // Apply translation placeholder content
     document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
         const key = el.getAttribute('data-translate-placeholder');
         if (translations[lang] && translations[lang][key]) {
@@ -2290,43 +2429,101 @@ function setLanguage(lang) {
         }
     });
 
-    // Re-render tools catalog with new language details if open
-    if (!catalogView.classList.contains('hidden')) {
-        renderCatalog(toolSearchInput.value);
-    }
-}
-
-function setTheme(theme) {
-    currentTheme = theme;
-    localStorage.setItem('vibeprompt_theme', theme);
-    if (theme === 'light') {
-        document.body.classList.add('light-theme');
-        if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-        if (mobileThemeToggleBtn) mobileThemeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    // Auto trigger RTL for Arabic (ar) language
+    if (lang === 'ar') {
+        setRtl(true);
     } else {
-        document.body.classList.remove('light-theme');
-        if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        if (mobileThemeToggleBtn) mobileThemeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        setRtl(currentRtl);
+    }
+
+    // Re-render tools catalog with new language details if open
+    const currentHash = location.hash;
+    if (!catalogView.classList.contains('hidden')) {
+        if (currentHash.startsWith('#category-')) {
+            const catName = currentHash.replace('#category-', '').replace(/-/g, ' ');
+            renderCatalog(toolSearchInput.value, catName);
+        } else {
+            renderCatalog(toolSearchInput.value);
+        }
     }
 }
 
-function setAccent(accent) {
-    currentAccent = accent;
-    localStorage.setItem('vibeprompt_accent', accent);
+function setThemePreset(preset) {
+    currentPreset = preset;
+    localStorage.setItem('vibeprompt_preset', preset);
     
-    // Remove old accent classes
-    document.body.classList.remove('accent-indigo', 'accent-cyan', 'accent-emerald', 'accent-purple', 'accent-orange', 'accent-pink');
-    // Add new accent class
-    document.body.classList.add(`accent-${accent}`);
+    // Remove old presets
+    document.body.classList.remove('preset-pure-light', 'preset-sunset-glow', 'preset-cyber-ocean', 'preset-crimson-wine', 'preset-emerald-forest');
+    
+    if (preset !== 'dark-slate') {
+        document.body.classList.add(`preset-${preset}`);
+    }
 
-    // Update active dots in picker
-    document.querySelectorAll('.accent-dot').forEach(dot => {
-        if (dot.getAttribute('data-accent') === accent) {
-            dot.classList.add('active');
+    // Update preset buttons ui
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+        if (btn.getAttribute('data-preset') === preset) {
+            btn.classList.add('active');
         } else {
-            dot.classList.remove('active');
+            btn.classList.remove('active');
         }
     });
+}
+
+function setDensity(density) {
+    currentDensity = density;
+    localStorage.setItem('vibeprompt_density', density);
+    if (densitySelector) densitySelector.value = density;
+
+    if (density === 'compact') {
+        document.body.classList.add('layout-compact');
+    } else {
+        document.body.classList.remove('layout-compact');
+    }
+}
+
+function setCorners(corners) {
+    currentCorners = corners;
+    localStorage.setItem('vibeprompt_corners', corners);
+    if (cornersSelector) cornersSelector.value = corners;
+
+    if (corners === 'sharp') {
+        document.body.classList.add('corners-sharp');
+    } else {
+        document.body.classList.remove('corners-sharp');
+    }
+}
+
+function setFont(font) {
+    currentFont = font;
+    localStorage.setItem('vibeprompt_font', font);
+    if (fontSelector) fontSelector.value = font;
+
+    document.body.classList.remove('font-jakarta', 'font-inter', 'font-grotesk');
+    document.body.classList.add(`font-${font}`);
+}
+
+function setBlur(enable) {
+    currentBlur = enable;
+    localStorage.setItem('vibeprompt_blur', enable);
+    if (blurToggle) blurToggle.checked = enable;
+
+    if (!enable) {
+        document.body.classList.add('blur-disabled');
+    } else {
+        document.body.classList.remove('blur-disabled');
+    }
+}
+
+function setRtl(enable) {
+    currentRtl = enable;
+    localStorage.setItem('vibeprompt_rtl', enable);
+    if (rtlToggle) rtlToggle.checked = enable;
+
+    if (enable) {
+        document.documentElement.setAttribute('dir', 'rtl');
+    } else {
+        document.documentElement.removeAttribute('dir');
+    }
 }
 
 // Init hash change routing
@@ -2340,6 +2537,11 @@ function route() {
     if (navBlogsDrawerLink) navBlogsDrawerLink.classList.remove('active');
     if (navAboutLink) navAboutLink.classList.remove('active');
     if (navAboutDrawerLink) navAboutDrawerLink.classList.remove('active');
+    
+    // Reset category navigation highlights
+    if (navCatDevTools) navCatDevTools.classList.remove('active');
+    if (navCatAiUtils) navCatAiUtils.classList.remove('active');
+    if (navCatDesignMedia) navCatDesignMedia.classList.remove('active');
 
     if (!hash || hash === '#home' || hash === '') {
         navHomeLink.classList.add('active');
@@ -2351,6 +2553,19 @@ function route() {
         renderCatalog(toolSearchInput.value);
     } else if (hash === '#apis') {
         location.hash = '#home';
+    } else if (hash.startsWith('#category-')) {
+        const catId = hash.replace('#category-', '');
+        const targetLink = document.getElementById(`nav-cat-${catId}`);
+        if (targetLink) targetLink.classList.add('active');
+        
+        catalogView.classList.remove('hidden');
+        apiDirectoryView.classList.add('hidden');
+        if (blogsView) blogsView.classList.add('hidden');
+        if (aboutView) aboutView.classList.add('hidden');
+        toolView.classList.add('hidden');
+        
+        const catName = catId.replace(/-/g, ' ');
+        renderCatalog(toolSearchInput.value, catName);
     } else if (hash === '#blogs') {
         if (navBlogsLink) navBlogsLink.classList.add('active');
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
@@ -2397,7 +2612,15 @@ function closeDrawer() {
 
 // Event Listeners
 window.addEventListener('hashchange', route);
-toolSearchInput.addEventListener('input', () => renderCatalog(toolSearchInput.value));
+toolSearchInput.addEventListener('input', () => {
+    const currentHash = location.hash;
+    if (currentHash.startsWith('#category-')) {
+        const catName = currentHash.replace('#category-', '').replace(/-/g, ' ');
+        renderCatalog(toolSearchInput.value, catName);
+    } else {
+        renderCatalog(toolSearchInput.value);
+    }
+});
 
 // Mobile toggle controls
 mobileMenuToggle.addEventListener('click', () => {
@@ -2410,52 +2633,69 @@ drawerLinks.forEach(link => {
     link.addEventListener('click', closeDrawer);
 });
 
-// Customizer panel bindings
-if (customizerToggleBtn) {
-    customizerToggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        customizerDropdown.classList.toggle('hidden');
+// Sidebar Launchers
+if (sidebarLauncherBtn) {
+    sidebarLauncherBtn.addEventListener('click', () => {
+        uiuxSidebar.classList.remove('hidden');
+    });
+}
+if (sidebarCloseBtn) {
+    sidebarCloseBtn.addEventListener('click', () => {
+        uiuxSidebar.classList.add('hidden');
+    });
+}
+if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', () => {
+        uiuxSidebar.classList.add('hidden');
     });
 }
 
-document.addEventListener('click', (e) => {
-    if (customizerDropdown && !customizerDropdown.classList.contains('hidden')) {
-        if (!customizerDropdown.contains(e.target) && e.target !== customizerToggleBtn) {
-            customizerDropdown.classList.add('hidden');
-        }
-    }
+// Customizer Preset Switcher
+document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        setThemePreset(btn.getAttribute('data-preset'));
+    });
 });
 
-document.querySelectorAll('.accent-dot').forEach(dot => {
-    dot.addEventListener('click', () => {
-        const accent = dot.getAttribute('data-accent');
-        setAccent(accent);
-    });
-});
-
-if (langSelector) {
-    langSelector.addEventListener('change', (e) => {
-        setLanguage(e.target.value);
-    });
-}
-if (mobileLangSelector) {
-    mobileLangSelector.addEventListener('change', (e) => {
-        setLanguage(e.target.value);
-        closeDrawer();
+// Density Selector
+if (densitySelector) {
+    densitySelector.addEventListener('change', (e) => {
+        setDensity(e.target.value);
     });
 }
 
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
+// Corners Selector
+if (cornersSelector) {
+    cornersSelector.addEventListener('change', (e) => {
+        setCorners(e.target.value);
     });
 }
-if (mobileThemeToggleBtn) {
-    mobileThemeToggleBtn.addEventListener('click', () => {
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-        closeDrawer();
+
+// Font Selector
+if (fontSelector) {
+    fontSelector.addEventListener('change', (e) => {
+        setFont(e.target.value);
+    });
+}
+
+// Blur Toggle
+if (blurToggle) {
+    blurToggle.addEventListener('change', (e) => {
+        setBlur(e.target.checked);
+    });
+}
+
+// RTL Toggle
+if (rtlToggle) {
+    rtlToggle.addEventListener('change', (e) => {
+        setRtl(e.target.checked);
+    });
+}
+
+// Header Language Dropdown
+if (headerLangSelector) {
+    headerLangSelector.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
     });
 }
 
@@ -2511,8 +2751,11 @@ saveSettingsBtn.addEventListener('click', () => {
 // Initial boot
 route();
 setLanguage(currentLang);
-setTheme(currentTheme);
-setAccent(currentAccent);
+setThemePreset(currentPreset);
+setDensity(currentDensity);
+setCorners(currentCorners);
+setFont(currentFont);
+setBlur(currentBlur);
 if (apiKey) {
     keyStatusText.className = 'status-badge status-success';
     keyStatusText.innerText = 'Connected';

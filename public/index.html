@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniTool Hub - Free SEO, Web & AI Developer Micro-Tools</title>
+    <title>AIToolXRadar - Free Web & AI Developer Micro-Tools</title>
     <meta name="description" content="Use 30+ free developer, SEO, and AI utility tools categorized professionally. Clean grids, dedicated breadcrumb pages, and responsive layout designs.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='8' height='8' rx='2' fill='%236366f1'/%3E%3Crect x='14' y='2' width='8' height='8' rx='2' fill='%2306b6d4'/%3E%3Crect x='2' y='14' width='8' height='8' rx='2' fill='%23a855f7'/%3E%3Ccircle cx='18' cy='18' r='4' fill='%23ec4899'/%3E%3C/svg%3E">
     
     <!-- FontAwesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,7 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     
     <!-- Google AdSense -->
@@ -24,42 +25,28 @@
         <div class="container header-container">
             <a href="#home" class="logo">
                 <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
-                <span class="logo-text">OmniTool <span class="accent-text">Hub</span></span>
+                <span class="logo-text">AITool<span class="accent-text">X</span>Radar</span>
             </a>
             
             <!-- Desktop Navigation Links -->
             <nav class="header-menu-links" id="header-menu-links">
                 <a href="#home" class="menu-link active" id="nav-home-link"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
+                <a href="#category-developer-tools" class="menu-link" id="nav-cat-developer-tools"><i class="fa-solid fa-code"></i> <span data-translate="devTools">Developer Tools</span></a>
+                <a href="#category-ai-utilities" class="menu-link" id="nav-cat-ai-utilities"><i class="fa-solid fa-robot"></i> <span data-translate="aiUtils">AI Utilities</span></a>
+                <a href="#category-design-media" class="menu-link" id="nav-cat-design-media"><i class="fa-solid fa-image"></i> <span data-translate="designMedia">Design & Media</span></a>
                 <a href="#blogs" class="menu-link" id="nav-blogs-link"><i class="fa-solid fa-book-open"></i> <span data-translate="blogs">Blogs</span></a>
                 <a href="#about" class="menu-link" id="nav-about-link"><i class="fa-solid fa-circle-info"></i> <span data-translate="about">About</span></a>
                 
-                <!-- Customizer controls -->
-                <div class="customizer-wrapper">
-                    <button id="theme-toggle" class="customizer-icon-btn" title="Toggle Light/Dark Mode"><i class="fa-solid fa-moon"></i></button>
-                    <button id="customizer-toggle" class="customizer-icon-btn" title="Customize Accent & Language"><i class="fa-solid fa-palette"></i></button>
-                    
-                    <div id="customizer-dropdown" class="customizer-dropdown hidden">
-                        <div class="customizer-section">
-                            <h5 data-translate="accentColor">Accent Color</h5>
-                            <div class="accent-picker">
-                                <span class="accent-dot dot-indigo active" data-accent="indigo" style="background:#6366f1;"></span>
-                                <span class="accent-dot dot-cyan" data-accent="cyan" style="background:#06b6d4;"></span>
-                                <span class="accent-dot dot-emerald" data-accent="emerald" style="background:#10b981;"></span>
-                                <span class="accent-dot dot-purple" data-accent="purple" style="background:#a855f7;"></span>
-                                <span class="accent-dot dot-orange" data-accent="orange" style="background:#f97316;"></span>
-                                <span class="accent-dot dot-pink" data-accent="pink" style="background:#ec4899;"></span>
-                            </div>
-                        </div>
-                        <div class="customizer-section">
-                            <h5 data-translate="language">Language</h5>
-                            <select id="lang-selector">
-                                <option value="en">English</option>
-                                <option value="hi">हिन्दी</option>
-                                <option value="es">Español</option>
-                                <option value="fr">Français</option>
-                            </select>
-                        </div>
-                    </div>
+                <!-- Globe Language Switcher on header right -->
+                <div class="header-lang-wrapper" style="margin-left: 12px; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-globe" style="color: var(--text-secondary); font-size: 0.95rem;"></i>
+                    <select id="header-lang-selector" style="background:transparent; border:none; color:var(--text-primary); cursor:pointer; font-weight:600; font-size:0.88rem; outline:none; padding:4px 0;">
+                        <option value="en" style="background:var(--bg-secondary);">EN</option>
+                        <option value="hi" style="background:var(--bg-secondary);">HI</option>
+                        <option value="es" style="background:var(--bg-secondary);">ES</option>
+                        <option value="fr" style="background:var(--bg-secondary);">FR</option>
+                        <option value="ar" style="background:var(--bg-secondary);">AR</option>
+                    </select>
                 </div>
             </nav>
             
@@ -76,41 +63,17 @@
             <div class="mobile-drawer-header">
                 <span class="logo">
                     <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
-                    <span class="logo-text">OmniTool <span class="accent-text">Hub</span></span>
+                    <span class="logo-text">AITool<span class="accent-text">X</span>Radar</span>
                 </span>
                 <button id="close-drawer-btn" class="drawer-close-x">&times;</button>
             </div>
             <nav class="mobile-drawer-nav">
                 <a href="#home" class="drawer-link"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
+                <a href="#category-developer-tools" class="drawer-link"><i class="fa-solid fa-code"></i> <span data-translate="devTools">Developer Tools</span></a>
+                <a href="#category-ai-utilities" class="drawer-link"><i class="fa-solid fa-robot"></i> <span data-translate="aiUtils">AI Utilities</span></a>
+                <a href="#category-design-media" class="drawer-link"><i class="fa-solid fa-image"></i> <span data-translate="designMedia">Design & Media</span></a>
                 <a href="#blogs" class="drawer-link" id="nav-blogs-drawer-link"><i class="fa-solid fa-book-open"></i> <span data-translate="blogs">Blogs</span></a>
                 <a href="#about" class="drawer-link" id="nav-about-drawer-link"><i class="fa-solid fa-circle-info"></i> <span data-translate="about">About</span></a>
-                
-                <div class="mobile-customizer-section" style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
-                        <span data-translate="theme" style="font-weight:600; font-size:0.9rem;">Theme</span>
-                        <button id="mobile-theme-toggle" class="customizer-icon-btn"><i class="fa-solid fa-moon"></i></button>
-                    </div>
-                    <div style="margin-bottom: 16px;">
-                        <span data-translate="accentColor" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom: 8px;">Accent Color</span>
-                        <div class="accent-picker" style="display:flex; gap:8px;">
-                            <span class="accent-dot dot-indigo active" data-accent="indigo" style="background:#6366f1; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
-                            <span class="accent-dot dot-cyan" data-accent="cyan" style="background:#06b6d4; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
-                            <span class="accent-dot dot-emerald" data-accent="emerald" style="background:#10b981; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
-                            <span class="accent-dot dot-purple" data-accent="purple" style="background:#a855f7; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
-                            <span class="accent-dot dot-orange" data-accent="orange" style="background:#f97316; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
-                            <span class="accent-dot dot-pink" data-accent="pink" style="background:#ec4899; width:24px; height:24px; border-radius:50%; cursor:pointer;"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <span data-translate="language" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom: 8px;">Language</span>
-                        <select id="mobile-lang-selector" style="width:100%; padding:8px; background:var(--bg-tertiary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:6px;">
-                            <option value="en">English</option>
-                            <option value="hi">हिन्दी</option>
-                            <option value="es">Español</option>
-                            <option value="fr">Français</option>
-                        </select>
-                    </div>
-                </div>
             </nav>
         </div>
     </div>
@@ -260,7 +223,7 @@
             <div class="footer-col-about">
                 <a href="#home" class="logo">
                     <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
-                    <span class="logo-text">OmniTool <span class="accent-text">Hub</span></span>
+                    <span class="logo-text">AITool<span class="accent-text">X</span>Radar</span>
                 </a>
                 <p class="footer-desc-text">Privacy-first web utilities catalog serving developers with lightning-fast offline compilers and robust AI integrations.</p>
             </div>
@@ -288,9 +251,101 @@
             </div>
         </div>
         <div class="container footer-sub-bar">
-            <p>&copy; 2026 OmniTool Hub. <span data-translate="allRightsReserved">All rights reserved. Built for professional developer productivity.</span></p>
+            <p>&copy; 2026 AIToolXRadar. <span data-translate="allRightsReserved">All rights reserved. Built for professional developer productivity.</span></p>
         </div>
     </footer>
+
+    <!-- Floating Launcher Trigger Button in Bottom Right -->
+    <button id="sidebar-launcher-btn" class="sidebar-launcher-btn" title="Open Customizer">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+    <!-- Customizer Slide-in Sidebar -->
+    <div id="uiux-sidebar" class="uiux-sidebar hidden">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <div class="sidebar-content glass-panel">
+            <div class="sidebar-header">
+                <h3><i class="fa-solid fa-palette"></i> <span data-translate="multiUiUx">Multi UI/UX</span></h3>
+                <button id="sidebar-close-btn" class="sidebar-close-btn">&times;</button>
+            </div>
+            
+            <div class="sidebar-body">
+                <!-- 1. Theme Presets -->
+                <div class="sidebar-section">
+                    <h4 data-translate="themePresets"><i class="fa-solid fa-palette"></i> Dynamic Theme Presets</h4>
+                    <div class="preset-grid">
+                        <button class="preset-btn active" data-preset="dark-slate" style="background:#0e0e14; border-color:#6366f1;">
+                            <span class="preset-dot" style="background:#6366f1;"></span> <span data-translate="darkSlate">Dark Slate</span>
+                        </button>
+                        <button class="preset-btn" data-preset="pure-light" style="background:#ffffff; color:#0f172a; border-color:rgba(0,0,0,0.1);">
+                            <span class="preset-dot" style="background:#0f172a;"></span> <span data-translate="pureLight">Pure Light</span>
+                        </button>
+                        <button class="preset-btn" data-preset="sunset-glow" style="background:linear-gradient(135deg, #1e1b4b, #311042); color:#fff; border-color:transparent;">
+                            <span class="preset-dot" style="background:#ec4899;"></span> <span data-translate="sunsetGlow">Sunset Glow</span>
+                        </button>
+                        <button class="preset-btn" data-preset="cyber-ocean" style="background:#0b132b; color:#fff; border-color:transparent;">
+                            <span class="preset-dot" style="background:#06b6d4;"></span> <span data-translate="cyberOcean">Cyber Ocean</span>
+                        </button>
+                        <button class="preset-btn" data-preset="crimson-wine" style="background:#1c0a10; color:#fff; border-color:transparent;">
+                            <span class="preset-dot" style="background:#ef4444;"></span> <span data-translate="crimsonWine">Crimson Wine</span>
+                        </button>
+                        <button class="preset-btn" data-preset="emerald-forest" style="background:#022c22; color:#fff; border-color:transparent;">
+                            <span class="preset-dot" style="background:#10b981;"></span> <span data-translate="emeraldForest">Emerald Forest</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Spacing & Density -->
+                <div class="sidebar-section">
+                    <h4 data-translate="layoutMechanics"><i class="fa-solid fa-arrows-left-right-to-line"></i> Spacing & Layout Mechanics</h4>
+                    
+                    <div class="option-row" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                        <label for="density-selector" data-translate="layoutDensity" style="font-size:0.88rem;">Layout Density</label>
+                        <select id="density-selector" style="padding:6px; background:var(--bg-tertiary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:6px; font-size:0.82rem;">
+                            <option value="cozy" data-translate="cozyMode">Cozy Mode (Default)</option>
+                            <option value="compact" data-translate="compactMode">Compact Mode (Data Intensive)</option>
+                        </select>
+                    </div>
+
+                    <div class="option-row" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                        <label for="corners-selector" data-translate="borderCorners" style="font-size:0.88rem;">Border Corner Profiles</label>
+                        <select id="corners-selector" style="padding:6px; background:var(--bg-tertiary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:6px; font-size:0.82rem;">
+                            <option value="rounded" data-translate="roundedCorners">Rounded Corners (Default 12px)</option>
+                            <option value="sharp" data-translate="sharpCorners">Sharp Corners</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 3. Typography & Blur -->
+                <div class="sidebar-section">
+                    <h4 data-translate="typographyEffects"><i class="fa-solid fa-font"></i> Typography & Extra Effects</h4>
+                    
+                    <div class="option-row" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                        <label for="font-selector" data-translate="primaryTypography" style="font-size:0.88rem;">Primary Typography Preset</label>
+                        <select id="font-selector" style="padding:6px; background:var(--bg-tertiary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:6px; font-size:0.82rem;">
+                            <option value="jakarta">Plus Jakarta Sans</option>
+                            <option value="inter">Inter (Default)</option>
+                            <option value="grotesk">Space Grotesk</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-row" style="margin-top:16px; display:flex; align-items:center; gap:8px;">
+                        <input type="checkbox" id="blur-toggle" checked style="width:16px; height:16px; accent-color:var(--accent-indigo); cursor:pointer;">
+                        <label for="blur-toggle" data-translate="enableBlur" style="font-size:0.88rem; cursor:pointer;">Enable Glassmorphic Backdrop Blur</label>
+                    </div>
+                </div>
+
+                <!-- 4. RTL Support -->
+                <div class="sidebar-section">
+                    <h4 data-translate="rtlSupport"><i class="fa-solid fa-right-to-left-text-direction"></i> Language Direction</h4>
+                    <div class="checkbox-row" style="margin-top:12px; display:flex; align-items:center; gap:8px;">
+                        <input type="checkbox" id="rtl-toggle" style="width:16px; height:16px; accent-color:var(--accent-indigo); cursor:pointer;">
+                        <label for="rtl-toggle" data-translate="enableRtl" style="font-size:0.88rem; cursor:pointer;">Enable RTL (Right-to-Left) Layout</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
