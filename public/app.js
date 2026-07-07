@@ -33,7 +33,7 @@ const relatedToolsList = document.getElementById('related-tools-list');
 
 // Menu navigation selectors
 const navHomeLink = document.getElementById('nav-home-link');
-const navApisLink = document.getElementById('nav-apis-link');
+const navApisLink = document.getElementById('nav-apis-link'); // Note: Removed from HTML, will be null
 const navBlogsLink = document.getElementById('nav-blogs-link');
 const navBlogsDrawerLink = document.getElementById('nav-blogs-drawer-link');
 const blogsView = document.getElementById('blogs-view');
@@ -2153,7 +2153,7 @@ function route() {
     
     // Reset active link styling
     navHomeLink.classList.remove('active');
-    navApisLink.classList.remove('active');
+    if (navApisLink) navApisLink.classList.remove('active');
     if (navBlogsLink) navBlogsLink.classList.remove('active');
     if (navBlogsDrawerLink) navBlogsDrawerLink.classList.remove('active');
 
@@ -2165,12 +2165,7 @@ function route() {
         toolView.classList.add('hidden');
         renderCatalog(toolSearchInput.value);
     } else if (hash === '#apis') {
-        navApisLink.classList.add('active');
-        catalogView.classList.add('hidden');
-        apiDirectoryView.classList.remove('hidden');
-        if (blogsView) blogsView.classList.add('hidden');
-        toolView.classList.add('hidden');
-        renderApiDirectory();
+        location.hash = '#home';
     } else if (hash === '#blogs') {
         if (navBlogsLink) navBlogsLink.classList.add('active');
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
