@@ -42,6 +42,13 @@ const navAboutLink = document.getElementById('nav-about-link');
 const navAboutDrawerLink = document.getElementById('nav-about-drawer-link');
 const aboutView = document.getElementById('about-view');
 
+const categoryPageView = document.getElementById('category-page-view');
+const categoryPageTitle = document.getElementById('category-page-title');
+const categoryHeroTitle = document.getElementById('category-hero-title');
+const categoryHeroDesc = document.getElementById('category-hero-desc');
+const categoryToolSearch = document.getElementById('category-tool-search');
+const categoryToolsGrid = document.getElementById('category-tools-grid');
+
 // Category navigation links
 const navCatDevTools = document.getElementById('nav-cat-developer-tools');
 const navCatAiUtils = document.getElementById('nav-cat-ai-utilities');
@@ -2813,11 +2820,12 @@ function setLanguage(lang) {
     // Re-render tools catalog with new language details if open
     const currentHash = location.hash;
     if (!catalogView.classList.contains('hidden')) {
+        renderCatalog(toolSearchInput.value);
+    }
+    if (categoryPageView && !categoryPageView.classList.contains('hidden')) {
         if (currentHash.startsWith('#category-')) {
             const catId = currentHash.replace('#category-', '');
-            renderCatalog(toolSearchInput.value, catId);
-        } else {
-            renderCatalog(toolSearchInput.value);
+            renderCategoryPage(catId, categoryToolSearch ? categoryToolSearch.value : '');
         }
     }
 }
@@ -2936,6 +2944,7 @@ function route() {
     if (!hash || hash === '#home' || hash === '') {
         navHomeLink.classList.add('active');
         catalogView.classList.remove('hidden');
+        if (categoryPageView) categoryPageView.classList.add('hidden');
         apiDirectoryView.classList.add('hidden');
         if (blogsView) blogsView.classList.add('hidden');
         if (aboutView) aboutView.classList.add('hidden');
@@ -2948,17 +2957,20 @@ function route() {
         const targetLink = document.getElementById(`nav-cat-${catId}`);
         if (targetLink) targetLink.classList.add('active');
         
-        catalogView.classList.remove('hidden');
+        catalogView.classList.add('hidden');
+        if (categoryPageView) categoryPageView.classList.remove('hidden');
         apiDirectoryView.classList.add('hidden');
         if (blogsView) blogsView.classList.add('hidden');
         if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
         
-        renderCatalog(toolSearchInput.value, catId);
+        if (categoryToolSearch) categoryToolSearch.value = '';
+        renderCategoryPage(catId);
     } else if (hash === '#blogs') {
         if (navBlogsLink) navBlogsLink.classList.add('active');
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
         catalogView.classList.add('hidden');
+        if (categoryPageView) categoryPageView.classList.add('hidden');
         apiDirectoryView.classList.add('hidden');
         if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
@@ -2970,6 +2982,7 @@ function route() {
         if (navBlogsLink) navBlogsLink.classList.add('active');
         if (navBlogsDrawerLink) navBlogsDrawerLink.classList.add('active');
         catalogView.classList.add('hidden');
+        if (categoryPageView) categoryPageView.classList.add('hidden');
         apiDirectoryView.classList.add('hidden');
         if (aboutView) aboutView.classList.add('hidden');
         toolView.classList.add('hidden');
@@ -2982,14 +2995,16 @@ function route() {
         if (navAboutLink) navAboutLink.classList.add('active');
         if (navAboutDrawerLink) navAboutDrawerLink.classList.add('active');
         catalogView.classList.add('hidden');
+        if (categoryPageView) categoryPageView.classList.add('hidden');
         apiDirectoryView.classList.add('hidden');
         if (blogsView) blogsView.classList.add('hidden');
         toolView.classList.add('hidden');
         if (aboutView) aboutView.classList.remove('hidden');
     } else if (hash.startsWith('#tool-')) {
-        const id = hash.replace('#tool-', '');
         if (blogsView) blogsView.classList.add('hidden');
         if (aboutView) aboutView.classList.add('hidden');
+        if (categoryPageView) categoryPageView.classList.add('hidden');
+        const id = hash.replace('#tool-', '');
         loadToolPage(id);
     }
 }
@@ -3002,14 +3017,145 @@ function closeDrawer() {
 // Event Listeners
 window.addEventListener('hashchange', route);
 toolSearchInput.addEventListener('input', () => {
-    const currentHash = location.hash;
-    if (currentHash.startsWith('#category-')) {
-        const catId = currentHash.replace('#category-', '');
-        renderCatalog(toolSearchInput.value, catId);
-    } else {
-        renderCatalog(toolSearchInput.value);
-    }
+    renderCatalog(toolSearchInput.value);
 });
+
+// Category page tool search filter
+if (categoryToolSearch) {
+    categoryToolSearch.addEventListener('input', () => {
+        const currentHash = location.hash;
+        if (currentHash.startsWith('#category-')) {
+            const catId = currentHash.replace('#category-', '');
+            renderCategoryPage(catId, categoryToolSearch.value);
+        }
+    });
+}
+
+const categoryMetadata = {
+    "developer-tools": {
+        title: {
+            en: "Developer Tools",
+            hi: "डेवलपर टूल्स",
+            es: "Herramientas de Desarrollador",
+            fr: "Outils de Développement",
+            ar: "أدوات المطور"
+        },
+        desc: {
+            en: "Secure, client-side tools for JSON compiling, syntax parsing, regex testing, and visual formatting.",
+            hi: "JSON कंपाइलिंग, सिंटैक्स पार्सिंग, रेगेक्स टेस्टिंग और विजुअल फॉर्मेटिंग के लिए सुरक्षित, क्लाइंट-साइड टूल्स।",
+            es: "Herramientas seguras del lado del cliente para compilación JSON, análisis de sintaxis, pruebas de regex y formateo visual.",
+            fr: "Outils client sécurisés pour la compilation JSON, l'analyse syntaxique, les tests regex et le formatage visuel.",
+            ar: "أدوات آمنة من جانب العميل لتجميع JSON وتحليل بناء الجملة واختبار التعبيرات العادية والتنسيق المرئي."
+        }
+    },
+    "ai-utilities": {
+        title: {
+            en: "AI Utilities",
+            hi: "एआई उपयोगिताएँ",
+            es: "Utilidades de IA",
+            fr: "Utilitaires d'IA",
+            ar: "أدوات الذكاء الاصطناعي"
+        },
+        desc: {
+            en: "Optimize your system prompts, calculate API transaction fees, or translate localization strings using Gemini AI.",
+            hi: "Gemini AI का उपयोग करके अपने सिस्टम प्रॉम्प्ट को अनुकूलित करें, API लेनदेन शुल्क की गणना करें, या स्थानीयकरण स्ट्रिंग्स का अनुवाद करें।",
+            es: "Optimice los prompts del sistema, calcule las tarifas de transacción de la API o traduzca cadenas de localización utilizando Gemini AI.",
+            fr: "Optimisez vos invites système, calculez les frais de transaction API ou traduisez les chaînes de localisation à l'aide de Gemini AI.",
+            ar: "قم بتحسين مطالبات النظام الخاص بك، أو حساب رسوم معاملات واجهة برمجة التطبيقات، أو ترجمة سلاسل التعريب باستخدام Gemini AI."
+        }
+    },
+    "design-and-media": {
+        title: {
+            en: "Design & Media",
+            hi: "डिजाइन और मीडिया",
+            es: "Diseño y Medios",
+            fr: "Design & Médias",
+            ar: "التصميم والوسائط"
+        },
+        desc: {
+            en: "Architect visual wave structures, adjust neumorphic shadow systems, or generate glassmorphic panels easily.",
+            hi: "विजुअल वेव स्ट्रक्चर बनाएं, न्यूमॉर्फिक शैडो सिस्टम को एडजस्ट करें, या आसानी से ग्लासमॉर्फिक पैनल जेनरेट करें।",
+            es: "Diseñe estructuras de ondas visuales, ajuste sistemas de sombras neumórficas o genere paneles glassmorphic fácilmente.",
+            fr: "Concevez des structures d'ondes visuelles, ajustez des systèmes d'ombres neumorphiques ou générez facilement des panneaux glassmorphic.",
+            ar: "صمم هياكل موجية مرئية، أو اضبط أنظمة الظل النيومورفية، أو أنشئ لوحات زجاجية بسهولة."
+        }
+    },
+    "productivity-and-business": {
+        title: {
+            en: "Productivity & Business",
+            hi: "उत्पादकता और व्यवसाय",
+            es: "Productividad y Negocios",
+            fr: "Productivité & Affaires",
+            ar: "الإنتاجية والأعمال"
+        },
+        desc: {
+            en: "Make client invoices, calculate freelance sustainable income, summarize standup briefs, or track UTM links.",
+            hi: "क्लाइंट इनवॉइस बनाएं, फ्रीलांस सस्टेनेबल इनकम की गणना करें, स्टैंडअप ब्रीफ का सारांश बनाएं, या विश्लेषणात्मक UTM लिंक ट्रैक करें।",
+            es: "Cree facturas de clientes, calcule los ingresos sostenibles de los autónomos, resuma los informes de standup o realice un seguimiento de los enlaces UTM analíticos.",
+            fr: "Créez des factures clients, calculez le revenu durable des indépendants, résumez les briefs de standup ou suivez les liens UTM analytiques.",
+            ar: "قم بإنشاء فواتير العملاء، أو حساب الدخل المستدام للعمل الحر، أو تلخيص تقارير الوقوف اليومي، أو تتبع روابط UTM التحليلية."
+        }
+    }
+};
+
+function renderCategoryPage(catId, searchQuery = '') {
+    const meta = categoryMetadata[catId];
+    const lang = currentLang;
+    
+    // Set headers & translations metadata
+    if (meta) {
+        categoryPageTitle.innerText = meta.title[lang] || meta.title['en'];
+        categoryHeroTitle.innerText = meta.title[lang] || meta.title['en'];
+        categoryHeroDesc.innerText = meta.desc[lang] || meta.desc['en'];
+    } else {
+        // Fallback
+        const cleanName = catId.replace(/-/g, ' ');
+        categoryPageTitle.innerText = cleanName;
+        categoryHeroTitle.innerText = cleanName;
+        categoryHeroDesc.innerText = "Discover utilities for this category.";
+    }
+
+    // Filter tools for this category and search query
+    const filtered = tools.filter(t => {
+        const matchesCategory = t.category.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-').trim() === catId;
+        const matchesSearch = !searchQuery || 
+                              t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              t.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
+
+    categoryToolsGrid.innerHTML = '';
+    
+    if (filtered.length === 0) {
+        categoryToolsGrid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align:center; padding:40px; border: 1px dashed var(--border-color); border-radius:12px; width:100%;">
+                <p style="color:var(--text-secondary)">No tools found matching your search. Try a different keyword!</p>
+            </div>
+        `;
+        return;
+    }
+
+    filtered.forEach(it => {
+        const card = document.createElement('a');
+        card.href = `#tool-${it.id}`;
+        card.className = 'tool-card-box';
+        card.innerHTML = `
+            <div class="tool-card-header">
+                <div class="tool-card-category">${it.category}</div>
+                <div class="tool-card-icon-wrapper">
+                    <i class="${it.icon}"></i>
+                </div>
+            </div>
+            <div class="tool-card-title">${it.name}</div>
+            <div class="tool-card-desc">${it.description}</div>
+            <div class="tool-card-footer">
+                <span>Try Tool</span>
+                <span><i class="fa-solid fa-arrow-right-long"></i></span>
+            </div>
+        `;
+        categoryToolsGrid.appendChild(card);
+    });
+}
 
 // Mobile toggle controls
 mobileMenuToggle.addEventListener('click', () => {

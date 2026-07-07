@@ -105,6 +105,33 @@
             </div>
         </div>
 
+        <!-- 1B. DEDICATED CATEGORY VIEW -->
+        <div id="category-page-view" class="container category-page-view hidden">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs" style="margin-bottom: 24px;">
+                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> <span data-translate="home">Home</span></a>
+                <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                <span class="bc-active" id="category-page-title">Category</span>
+            </nav>
+
+            <!-- Hero Banner -->
+            <section class="api-hero-banner glass-panel" style="margin-bottom: 32px;">
+                <h2 id="category-hero-title">Category Title</h2>
+                <p id="category-hero-desc">Curated utilities for developer productivity.</p>
+            </section>
+
+            <!-- Category Specific Search -->
+            <div class="search-bar-wrapper" style="margin-bottom: 40px;">
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" id="category-tool-search" placeholder="Search tools in this category...">
+            </div>
+
+            <!-- Dynamic grid of tools for this category -->
+            <div id="category-tools-grid" class="category-row-grid">
+                <!-- Cards will render here -->
+            </div>
+        </div>
+
         <!-- 2. FREE AI API DIRECTORY VIEW -->
         <div id="api-directory-view" class="container api-directory-view hidden">
             <!-- Breadcrumbs -->
