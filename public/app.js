@@ -3129,7 +3129,7 @@ function renderCategoryPage(catId, searchQuery = '') {
     if (filtered.length === 0) {
         categoryToolsGrid.innerHTML = `
             <div style="grid-column: 1/-1; text-align:center; padding:40px; border: 1px dashed var(--border-color); border-radius:12px; width:100%;">
-                <p style="color:var(--text-secondary)">No tools found matching your search. Try a different keyword!</p>
+                <p style="color:var(--text-secondary)">No tools found in this category.</p>
             </div>
         `;
         return;
@@ -3138,21 +3138,98 @@ function renderCategoryPage(catId, searchQuery = '') {
     filtered.forEach(it => {
         const card = document.createElement('a');
         card.href = `#tool-${it.id}`;
-        card.className = 'tool-card-box';
-        card.innerHTML = `
-            <div class="tool-card-header">
-                <div class="tool-card-category">${it.category}</div>
-                <div class="tool-card-icon-wrapper">
-                    <i class="${it.icon}"></i>
+
+        if (catId === 'developer-tools') {
+            card.className = 'tool-card-box dev-tools-card';
+            card.innerHTML = `
+                <div class="dev-tools-card-header-bar">
+                    <div class="dev-tools-card-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span style="opacity: 0.6;">sys.sh</span>
                 </div>
-            </div>
-            <div class="tool-card-title">${it.name}</div>
-            <div class="tool-card-desc">${it.description}</div>
-            <div class="tool-card-footer">
-                <span>Try Tool</span>
-                <span><i class="fa-solid fa-arrow-right-long"></i></span>
-            </div>
-        `;
+                <div class="tool-card-title dev-tools-card-title">
+                    <span class="dev-tools-card-terminal-prompt">&gt;</span>${it.name}
+                </div>
+                <div class="tool-card-desc dev-tools-card-desc">${it.description}</div>
+                <div class="dev-tools-card-action">
+                    <span>[run tool]</span>
+                    <i class="fa-solid fa-terminal" style="font-size: 0.88rem;"></i>
+                </div>
+            `;
+        } else if (catId === 'ai-utilities') {
+            card.className = 'tool-card-box ai-utils-card';
+            card.innerHTML = `
+                <div class="tool-card-header">
+                    <span class="ai-badge">AI Core</span>
+                    <div class="ai-utils-icon-wrap">
+                        <i class="${it.icon}"></i>
+                    </div>
+                </div>
+                <div class="tool-card-title" style="color: var(--text-primary); font-weight:700;">${it.name}</div>
+                <div class="tool-card-desc" style="color: var(--text-secondary); opacity:0.9;">${it.description}</div>
+                <div class="tool-card-footer" style="color:#c084fc;">
+                    <span>Launch Agent</span>
+                    <span><i class="fa-solid fa-bolt" style="margin-left: 4px;"></i></span>
+                </div>
+            `;
+        } else if (catId === 'design-and-media') {
+            card.className = 'tool-card-box design-media-card';
+            card.innerHTML = `
+                <div class="tool-card-header">
+                    <div class="design-swatches">
+                        <span class="design-swatch" style="background:#06b6d4;"></span>
+                        <span class="design-swatch" style="background:#a855f7;"></span>
+                        <span class="design-swatch" style="background:#10b981;"></span>
+                    </div>
+                    <div class="design-media-icon-wrap">
+                        <i class="${it.icon}"></i>
+                    </div>
+                </div>
+                <div class="tool-card-title" style="letter-spacing:-0.01em;">${it.name}</div>
+                <div class="tool-card-desc">${it.description}</div>
+                <div class="tool-card-footer" style="color:#06b6d4;">
+                    <span>Open Canvas</span>
+                    <span><i class="fa-solid fa-compass" style="margin-left: 4px;"></i></span>
+                </div>
+            `;
+        } else if (catId === 'productivity-and-business') {
+            card.className = 'tool-card-box productivity-business-card';
+            card.innerHTML = `
+                <div class="tool-card-header">
+                    <div class="prod-meta-badge">
+                        <span style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block; margin-right:4px;"></span> Local Sync
+                    </div>
+                    <div class="prod-icon-wrap">
+                        <i class="${it.icon}"></i>
+                    </div>
+                </div>
+                <div class="tool-card-title" style="font-weight:600;">${it.name}</div>
+                <div class="tool-card-desc">${it.description}</div>
+                <div class="tool-card-footer" style="color:#10b981;">
+                    <span>Open Workspace</span>
+                    <span><i class="fa-solid fa-briefcase" style="margin-left: 4px;"></i></span>
+                </div>
+            `;
+        } else {
+            // Default card layout fallback
+            card.className = 'tool-card-box';
+            card.innerHTML = `
+                <div class="tool-card-header">
+                    <div class="tool-card-category">${it.category}</div>
+                    <div class="tool-card-icon-wrapper">
+                        <i class="${it.icon}"></i>
+                    </div>
+                </div>
+                <div class="tool-card-title">${it.name}</div>
+                <div class="tool-card-desc">${it.description}</div>
+                <div class="tool-card-footer">
+                    <span>Try Tool</span>
+                    <span><i class="fa-solid fa-arrow-right-long"></i></span>
+                </div>
+            `;
+        }
+
         categoryToolsGrid.appendChild(card);
     });
 }
