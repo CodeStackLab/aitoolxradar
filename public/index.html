@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniTool Hub - Free SEO, Web & AI Developer Micro-Tools</title>
+    <meta name="description" content="Use 30+ free developer, SEO, and AI utility tools categorized professionally. Clean grids, dedicated breadcrumb pages, and responsive layout designs.">
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2026695847898016" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Top Navigation Header -->
+    <header class="app-top-header">
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
+                <span class="logo-text">OmniTool <span class="accent-text">Hub</span></span>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <nav class="header-menu-links" id="header-menu-links">
+                <a href="#home" class="menu-link active" id="nav-home-link"><i class="fa-solid fa-house"></i> All Tools</a>
+                <a href="#apis" class="menu-link" id="nav-apis-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Free AI APIs</a>
+                <a href="#blogs" class="menu-link" id="nav-blogs-link"><i class="fa-solid fa-book-open"></i> Blogs</a>
+            </nav>
+            
+            <!-- Mobile Menu Toggle Hamburger -->
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Overlay Menu -->
+    <div id="mobile-drawer" class="mobile-drawer-overlay hidden">
+        <div class="mobile-drawer-content glass-panel">
+            <div class="mobile-drawer-header">
+                <span class="logo">
+                    <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
+                    <span class="logo-text">OmniTool <span class="accent-text">Hub</span></span>
+                </span>
+                <button id="close-drawer-btn" class="drawer-close-x">&times;</button>
+            </div>
+            <nav class="mobile-drawer-nav">
+                <a href="#home" class="drawer-link"><i class="fa-solid fa-house"></i> All Tools</a>
+                <a href="#apis" class="drawer-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Free AI APIs</a>
+                <a href="#blogs" class="drawer-link" id="nav-blogs-drawer-link"><i class="fa-solid fa-book-open"></i> Blogs</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <!-- 1. HOMEPAGE CATALOG VIEW -->
+        <div id="catalog-view" class="container catalog-view">
+            <!-- Hero search banner -->
+            <section class="hero-search-section">
+                <div class="hero-bg-blur-circle"></div>
+                <h1>Free Web & AI Developer Tools</h1>
+                <p>Search and access 30+ highly-responsive, privacy-first client utilities to speed up your workflow.</p>
+                <div class="search-bar-wrapper">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" id="tool-search" placeholder="Search for tools (e.g., SQL, JSON, SVG, Regex...)">
+                </div>
+            </section>
+
+            <!-- Dynamic Category Rows Target -->
+            <div id="categories-container" class="categories-container">
+                <!-- Grouped rows will be dynamically injected here -->
+            </div>
+        </div>
+
+        <!-- 2. FREE AI API DIRECTORY VIEW -->
+        <div id="api-directory-view" class="container api-directory-view hidden">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> Home</a>
+                <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                <span class="bc-active">Free AI APIs</span>
+            </nav>
+
+            <section class="api-hero-banner glass-panel">
+                <h2>15 Free, Performant AI Developer APIs</h2>
+                <p>A curated reference index of the best serverless model endpoints offering free tiers for text generation, embeddings, speech, and image synthesis.</p>
+            </section>
+
+            <!-- Grid container for the 15 APIs -->
+            <div class="api-list-grid" id="api-list-grid">
+                <!-- Injected dynamically via app.js -->
+            </div>
+        </div>
+
+        <!-- 4. BLOGS VIEW -->
+        <div id="blogs-view" class="container blogs-view hidden">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs" style="margin-bottom: 24px;">
+                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> Home</a>
+                <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                <span class="bc-active">Blogs</span>
+            </nav>
+
+            <div id="blogs-content-container"></div>
+        </div>
+
+        <!-- 3. DEDICATED TOOL WORKSPACE VIEW -->
+        <div id="tool-view" class="container tool-view hidden">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="#home" class="bc-home"><i class="fa-solid fa-house"></i> Home</a>
+                <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                <span id="breadcrumb-cat" class="bc-category">Developer Tools</span>
+                <span class="bc-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                <span id="breadcrumb-tool" class="bc-active">JSON to TS</span>
+            </nav>
+
+            <!-- Dedicated Page Split Grid -->
+            <div class="tool-workspace-page">
+                <!-- Active Tool Frame -->
+                <div class="workspace-card glass-panel">
+                    <div class="workspace-header-banner">
+                        <div class="tool-title-row">
+                            <span class="tool-header-icon-box" id="active-tool-icon-container">
+                                <i class="fa-solid fa-gear"></i>
+                            </span>
+                            <div>
+                                <h2 id="active-tool-title">Tool Title</h2>
+                                <p id="active-tool-desc">Tool description matches here...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic rendering target -->
+                    <div id="workspace-container" class="workspace-container">
+                        <!-- Dynamic Tool HTML elements injected here -->
+                    </div>
+                </div>
+
+                <!-- Related Tools Sidebar -->
+                <aside class="related-tools-sidebar glass-panel">
+                    <h3><i class="fa-solid fa-link"></i> Related Utilities</h3>
+                    <ul class="related-tools-list" id="related-tools-list">
+                        <!-- Related links elements injected here -->
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- API Settings Modal overlay -->
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-gear"></i> Gemini API Configuration</h3>
+                <button id="close-settings-btn" class="modal-close-x">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">To override the backend fallback API and use your own developer rates, save your personal Google Gemini API key. Keys are saved locally in your browser's localStorage.</p>
+                <div class="form-group">
+                    <label for="api-key-input">Gemini API Key</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="api-key-input" placeholder="AIzaSy...">
+                        <button id="toggle-key-visibility" class="visibility-btn"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="settings-actions">
+                    <button id="save-settings-btn" class="btn btn-primary btn-sm">Save Key</button>
+                    <span id="key-status-text" class="status-badge status-warning">Using Backend API</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Footer Section with Menu links columns -->
+    <footer class="app-footer-bottom">
+        <div class="container footer-grid-columns">
+            <div class="footer-col-about">
+                <a href="#home" class="logo">
+                    <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
+                    <span class="logo-text">OmniTool <span class="accent-text">Hub</span></span>
+                </a>
+                <p class="footer-desc-text">Privacy-first web utilities catalog serving developers with lightning-fast offline compilers and robust AI integrations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Tool Categories</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#home"><i class="fa-solid fa-code"></i> Developer Tools</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-robot"></i> AI Utilities</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-image"></i> Design & Media</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-heart-pulse"></i> Niche Utilities</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#apis"><i class="fa-solid fa-list"></i> Free AI API Directory</a></li>
+                    <li><a href="https://aistudio.google.com/" target="_blank"><i class="fa-solid fa-key"></i> Get Gemini API Key</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-circle-info"></i> How it works</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Status</h4>
+                <ul class="footer-links-list">
+                    <li><span class="status-badge status-success"><i class="fa-solid fa-circle-check"></i> System Online</span></li>
+                    <li><span class="status-badge status-success"><i class="fa-solid fa-server"></i> API Gateway Live</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-sub-bar">
+            <p>&copy; 2026 OmniTool Hub. All rights reserved. Built for professional developer productivity.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

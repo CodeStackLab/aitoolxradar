@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  aitoolxradar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aitoolxradar-container
+    ports:
+      - "8080:80"
+    environment:
+      - GEMINI_API_KEY=
+    restart: unless-stopped
