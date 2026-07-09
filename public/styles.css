@@ -1247,7 +1247,7 @@ input[type="range"]::-webkit-slider-thumb {
 /* Blogs Section CSS Styles */
 .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 24px;
     margin-top: 32px;
 }
@@ -1358,7 +1358,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 .blog-full-meta {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 12px 20px;
     color: var(--text-secondary);
     font-size: 0.82rem;
     margin-bottom: 12px;
