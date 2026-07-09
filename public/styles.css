@@ -2060,3 +2060,44 @@ body {
         padding-top: 16px;
     }
 }
+
+/* Additional Mobile Responsiveness for Pages and Blogs */
+.about-card {
+    padding: 40px;
+    border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+    .about-card {
+        padding: 20px !important;
+        border-radius: 12px;
+    }
+    .about-card h2 {
+        font-size: 1.5rem !important;
+    }
+    .about-text-content {
+        font-size: 1rem !important;
+    }
+    
+    .blog-full-title {
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+        word-wrap: break-word;
+    }
+    
+    .blog-card-title {
+        font-size: 1.25rem !important;
+        word-wrap: break-word;
+        line-height: 1.4 !important;
+    }
+    
+    .blog-full-image {
+        height: 250px !important;
+    }
+    
+    .author-section {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+}
