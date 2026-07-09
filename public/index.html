@@ -5,8 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIToolXRadar - Free Web & AI Developer Micro-Tools</title>
     <meta name="description" content="Use 30+ free developer, SEO, and AI utility tools categorized professionally. Clean grids, dedicated breadcrumb pages, and responsive layout designs.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='8' height='8' rx='2' fill='%236366f1'/%3E%3Crect x='14' y='2' width='8' height='8' rx='2' fill='%2306b6d4'/%3E%3Crect x='2' y='14' width='8' height='8' rx='2' fill='%23a855f7'/%3E%3Ccircle cx='18' cy='18' r='4' fill='%23ec4899'/%3E%3C/svg%3E">
+    <meta name="keywords" content="AI tools, developer utilities, SEO tools, JSON formatter, code snippets, web development, micro-saas">
+    <meta name="author" content="AIToolXRadar">
+    <link rel="canonical" href="https://aitoolxradar.com/" />
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolxradar.com/">
+    <meta property="og:title" content="AIToolXRadar - Free Web & AI Developer Micro-Tools">
+    <meta property="og:description" content="Use 30+ free developer, SEO, and AI utility tools categorized professionally. Clean grids, dedicated breadcrumb pages, and responsive layout designs.">
+    <meta property="og:image" content="https://aitoolxradar.com/images/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aitoolxradar.com/">
+    <meta property="twitter:title" content="AIToolXRadar - Free Web & AI Developer Micro-Tools">
+    <meta property="twitter:description" content="Use 30+ free developer, SEO, and AI utility tools categorized professionally. Clean grids, dedicated breadcrumb pages, and responsive layout designs.">
+    <meta property="twitter:image" content="https://aitoolxradar.com/images/logo.png">
+
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AIToolXRadar",
+      "url": "https://aitoolxradar.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://aitoolxradar.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='8' height='8' rx='2' fill='%236366f1'/%3E%3Crect x='14' y='2' width='8' height='8' rx='2' fill='%2306b6d4'/%3E%3Crect x='2' y='14' width='8' height='8' rx='2' fill='%23a855f7'/%3E%3Ccircle cx='18' cy='18' r='4' fill='%23ec4899'/%3E%3C/svg%3E">
     <!-- FontAwesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -24,7 +56,7 @@
     <header class="app-top-header">
         <div class="container header-container">
             <a href="#home" class="logo">
-                <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
+                <img src="images/logo.png" alt="AIToolXRadar Logo" class="main-logo-img" style="width: 36px; height: 36px; border-radius: 8px;">
                 <span class="logo-text">AITool<span class="accent-text">X</span>Radar</span>
             </a>
             
@@ -66,15 +98,9 @@
                 </div>
                 
                 <!-- Globe Language Switcher on header right -->
-                <div class="header-lang-wrapper" style="margin-left: 12px; display: flex; align-items: center; gap: 6px;">
-                    <i class="fa-solid fa-globe" style="color: var(--text-secondary); font-size: 0.95rem;"></i>
-                    <select id="header-lang-selector" style="background:transparent; border:none; color:var(--text-primary); cursor:pointer; font-weight:600; font-size:0.88rem; outline:none; padding:4px 0;">
-                        <option value="en" style="background:var(--bg-secondary);">EN</option>
-                        <option value="hi" style="background:var(--bg-secondary);">HI</option>
-                        <option value="es" style="background:var(--bg-secondary);">ES</option>
-                        <option value="fr" style="background:var(--bg-secondary);">FR</option>
-                        <option value="ar" style="background:var(--bg-secondary);">AR</option>
-                    </select>
+                <!-- Google Translate Widget -->
+                <div class="header-lang-wrapper" style="margin-left: 12px; display: flex; align-items: center;">
+                    <div id="google_translate_element"></div>
                 </div>
 
                 <!-- Theme Switcher Button -->
@@ -95,7 +121,7 @@
         <div class="mobile-drawer-content glass-panel">
             <div class="mobile-drawer-header">
                 <span class="logo">
-                    <i class="fa-solid fa-cubes-nested logo-icon accent-text"></i>
+                    <img src="images/logo.png" alt="AIToolXRadar Logo" class="main-logo-img" style="width: 32px; height: 32px; border-radius: 6px;">
                     <span class="logo-text">AITool<span class="accent-text">X</span>Radar</span>
                 </span>
                 <button id="close-drawer-btn" class="drawer-close-x">&times;</button>
@@ -410,5 +436,17 @@
     </div>
 
     <script src="app.js"></script>
+    
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

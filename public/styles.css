@@ -1200,7 +1200,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-family: var(--font-heading);
     font-size: 0.95rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-primary);
     margin-bottom: 16px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1224,7 +1224,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .footer-links-list a:hover {
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .footer-sub-bar {
@@ -1975,6 +1975,57 @@ html[dir="rtl"] .sidebar-launcher-btn {
 
 .dropdown-item:hover i {
     color: var(--accent-cyan);
+}
+
+/* Base transitions for theme swapping */
+body, .glass-panel, .blog-card, .app-top-header, .footer-container {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Google Translate Styling */
+#google_translate_element select {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+}
+.goog-te-gadget {
+    color: transparent !important;
+    font-size: 0;
+}
+.goog-te-gadget span {
+    display: none;
+}
+body > .skiptranslate {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    .api-hero-banner {
+        padding: 32px 24px;
+        margin-bottom: 24px;
+    }
+    .footer-container {
+        padding: 40px 24px;
+    }
+    .blogs-grid {
+        gap: 16px;
+    }
+    .hero-search-section h1 {
+        font-size: 2.1rem;
+    }
 }
 
 /* Comprehensive Mobile Responsiveness Fixes */
