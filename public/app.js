@@ -2406,51 +2406,184 @@ function renderCatalog(searchQuery = '', categoryFilter = '') {
 // Blogs Data
 const blogPosts = [
     {
-        id: "boost-developer-productivity",
-        title: "How to Boost Developer Productivity with AI Micro-Tools",
-        category: "AI Utilities",
-        date: "July 7, 2026",
-        gradient: "linear-gradient(135deg, var(--accent-indigo), var(--accent-purple))",
-        excerpt: "Learn how modern AI converters, calculators, and schema builders can speed up your web development flow.",
-        content: `
-            <p>Artificial Intelligence is no longer just a buzzword. For developers, it manifests as incredibly helpful micro-tools that solve specific, repetitive problems. In this post, we'll dive into how you can use tools like Zod schema generators, regular expression testers, and cron visualizers to eliminate bottlenecks in your development cycle.</p>
-            <h3>1. Automating the Schema Boilerplate</h3>
-            <p>One of the most time-consuming parts of working with modern API endpoints is typing. You receive a massive JSON payload and need to write TypeScript interfaces and validation schemas for it. Using an automatic JSON-to-Zod compiler lets you generate perfect code in under a second.</p>
-            <h3>2. Visualizing Cron Schedules Instantly</h3>
-            <p>Reading cron syntax like <code>*/15 8-18 * * 1-5</code> can be error-prone. A cron visualizer translates this logic into human-readable sentences, preventing mistakes in background task planning.</p>
-            <h3>Conclusion</h3>
-            <p>By keeping a set of responsive, local, privacy-first developer tools in your utility belt, you save countless context switches and protect your sensitive data from being uploaded to external API engines.</p>
-        `
+        "id": "how-to-boost-developer-productivity-with-ai-micro-tools",
+        "title": "How to Boost Developer Productivity with AI Micro-Tools",
+        "category": "AI Utilities",
+        "date": "July 20, 2026",
+        "image": "https://picsum.photos/seed/blog100/800/400",
+        "excerpt": "Explore our deep dive into how to boost developer productivity with ai micro-tools. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>How to Boost Developer Productivity with AI Micro-Tools</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
     },
     {
-        id: "privacy-first-local-tools",
-        title: "Why Privacy-First Local Utilities Matter for Tech Teams",
-        category: "Security",
-        date: "July 5, 2026",
-        gradient: "linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald))",
-        excerpt: "Pasting client data into random formatting websites poses security risks. Discover the safety of client-side operations.",
-        content: `
-            <p>When you're formatting JSON, beautifying SQL, or testing regex, it is tempting to use the first Google result. However, many of these websites log and store everything you paste into their input forms. This is a severe threat if you are working with database exports, personal client data, or proprietary business logic.</p>
-            <h3>The Danger of Third-Party Processing</h3>
-            <p>Many legacy conversion sites process data on the server side, meaning your text is transmitted across the internet and stored in database logs. If these sites are compromised, your data could leak.</p>
-            <h3>How Client-Side Apps Keep You Safe</h3>
-            <p>A privacy-first tool runs the code entirely in your web browser. JavaScript parses the input locally without ever making a network request to an external server. This guarantees that your sensitive keys, passwords, and user information never leave your local machine.</p>
-        `
+        "id": "why-privacy-first-local-utilities-matter-for-tech-teams",
+        "title": "Why Privacy-First Local Utilities Matter for Tech Teams",
+        "category": "Security",
+        "date": "July 20, 2026",
+        "image": "https://picsum.photos/seed/blog101/800/400",
+        "excerpt": "Explore our deep dive into why privacy-first local utilities matter for tech teams. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Why Privacy-First Local Utilities Matter for Tech Teams</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
     },
     {
-        id: "understanding-ai-apis",
-        title: "Understanding Serverless AI Models & Free Tiers",
-        category: "AI Integration",
-        date: "July 3, 2026",
-        gradient: "linear-gradient(135deg, var(--accent-pink), var(--accent-purple))",
-        excerpt: "A complete guide on utilizing model providers like Gemini, Cohere, and Groq to add artificial intelligence to apps.",
-        content: `
-            <p>Building AI apps doesn't require renting expensive GPUs anymore. Modern API gateways allow you to connect directly to models via standard REST endpoints. Many providers offer generous free tiers to help developers test and build prototypes.</p>
-            <h3>Finding the Best Free Tiers</h3>
-            <p>In our Free AI API Directory, we catalog the top platforms. Providers like Google AI Studio (Gemini), Groq (running Llama 3), and Hugging Face offer rate-limited endpoints suitable for hobby projects and startup MVPs.</p>
-            <h3>Authentication and Local Keys</h3>
-            <p>When deploying frontend applications, never hardcode your API keys. Instead, allow users to provide their own keys securely in their browser's storage, ensuring rates are handled correctly and keys aren't exposed publicly.</p>
-        `
+        "id": "understanding-serverless-ai-models-free-tiers",
+        "title": "Understanding Serverless AI Models & Free Tiers",
+        "category": "AI Integration",
+        "date": "July 19, 2026",
+        "image": "https://picsum.photos/seed/blog102/800/400",
+        "excerpt": "Explore our deep dive into understanding serverless ai models & free tiers. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Understanding Serverless AI Models & Free Tiers</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "mastering-ui-ux-the-glassmorphism-trend-in-modern-web-apps",
+        "title": "Mastering UI/UX: The Glassmorphism Trend in Modern Web Apps",
+        "category": "Design & UI/UX",
+        "date": "July 19, 2026",
+        "image": "https://picsum.photos/seed/blog103/800/400",
+        "excerpt": "Explore our deep dive into mastering ui/ux: the glassmorphism trend in modern web apps. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Mastering UI/UX: The Glassmorphism Trend in Modern Web Apps</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "technical-seo-in-2026-beyond-just-meta-tags",
+        "title": "Technical SEO in 2026: Beyond Just Meta Tags",
+        "category": "SEO & Growth",
+        "date": "July 18, 2026",
+        "image": "https://picsum.photos/seed/blog104/800/400",
+        "excerpt": "Explore our deep dive into technical seo in 2026: beyond just meta tags. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Technical SEO in 2026: Beyond Just Meta Tags</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "the-rise-of-micro-saas-and-single-purpose-utilities",
+        "title": "The Rise of Micro-SaaS and Single-Purpose Utilities",
+        "category": "Business",
+        "date": "July 18, 2026",
+        "image": "https://picsum.photos/seed/blog105/800/400",
+        "excerpt": "Explore our deep dive into the rise of micro-saas and single-purpose utilities. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>The Rise of Micro-SaaS and Single-Purpose Utilities</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "10-vs-code-extensions-every-web-developer-needs",
+        "title": "10 VS Code Extensions Every Web Developer Needs",
+        "category": "Development",
+        "date": "July 17, 2026",
+        "image": "https://picsum.photos/seed/blog106/800/400",
+        "excerpt": "Explore our deep dive into 10 vs code extensions every web developer needs. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>10 VS Code Extensions Every Web Developer Needs</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "building-resilient-apis-with-node-js-and-express",
+        "title": "Building Resilient APIs with Node.js and Express",
+        "category": "Backend",
+        "date": "July 17, 2026",
+        "image": "https://picsum.photos/seed/blog107/800/400",
+        "excerpt": "Explore our deep dive into building resilient apis with node.js and express. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Building Resilient APIs with Node.js and Express</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "the-future-of-frontend-webassembly-and-rust",
+        "title": "The Future of Frontend: WebAssembly and Rust",
+        "category": "Frontend",
+        "date": "July 16, 2026",
+        "image": "https://picsum.photos/seed/blog108/800/400",
+        "excerpt": "Explore our deep dive into the future of frontend: webassembly and rust. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>The Future of Frontend: WebAssembly and Rust</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "state-management-in-react-redux-vs-context-in-2026",
+        "title": "State Management in React: Redux vs Context in 2026",
+        "category": "React",
+        "date": "July 16, 2026",
+        "image": "https://picsum.photos/seed/blog109/800/400",
+        "excerpt": "Explore our deep dive into state management in react: redux vs context in 2026. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>State Management in React: Redux vs Context in 2026</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "securing-your-web-apps-common-vulnerabilities",
+        "title": "Securing Your Web Apps: Common Vulnerabilities",
+        "category": "Security",
+        "date": "July 15, 2026",
+        "image": "https://picsum.photos/seed/blog110/800/400",
+        "excerpt": "Explore our deep dive into securing your web apps: common vulnerabilities. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Securing Your Web Apps: Common Vulnerabilities</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "automating-deployment-with-github-actions",
+        "title": "Automating Deployment with GitHub Actions",
+        "category": "DevOps",
+        "date": "July 15, 2026",
+        "image": "https://picsum.photos/seed/blog111/800/400",
+        "excerpt": "Explore our deep dive into automating deployment with github actions. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Automating Deployment with GitHub Actions</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "designing-dark-mode-best-practices-and-pitfalls",
+        "title": "Designing Dark Mode: Best Practices and Pitfalls",
+        "category": "Design",
+        "date": "July 14, 2026",
+        "image": "https://picsum.photos/seed/blog112/800/400",
+        "excerpt": "Explore our deep dive into designing dark mode: best practices and pitfalls. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Designing Dark Mode: Best Practices and Pitfalls</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "database-indexing-strategies-for-high-traffic-sites",
+        "title": "Database Indexing Strategies for High-Traffic Sites",
+        "category": "Database",
+        "date": "July 14, 2026",
+        "image": "https://picsum.photos/seed/blog113/800/400",
+        "excerpt": "Explore our deep dive into database indexing strategies for high-traffic sites. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Database Indexing Strategies for High-Traffic Sites</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "graphql-vs-rest-making-the-right-choice",
+        "title": "GraphQL vs REST: Making the Right Choice",
+        "category": "API Design",
+        "date": "July 13, 2026",
+        "image": "https://picsum.photos/seed/blog114/800/400",
+        "excerpt": "Explore our deep dive into graphql vs rest: making the right choice. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>GraphQL vs REST: Making the Right Choice</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "dockerizing-your-full-stack-application",
+        "title": "Dockerizing Your Full-Stack Application",
+        "category": "DevOps",
+        "date": "July 13, 2026",
+        "image": "https://picsum.photos/seed/blog115/800/400",
+        "excerpt": "Explore our deep dive into dockerizing your full-stack application. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Dockerizing Your Full-Stack Application</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "the-complete-guide-to-css-grid-and-flexbox",
+        "title": "The Complete Guide to CSS Grid and Flexbox",
+        "category": "CSS",
+        "date": "July 12, 2026",
+        "image": "https://picsum.photos/seed/blog116/800/400",
+        "excerpt": "Explore our deep dive into the complete guide to css grid and flexbox. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>The Complete Guide to CSS Grid and Flexbox</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "optimizing-web-performance-lcp-and-cls",
+        "title": "Optimizing Web Performance: LCP and CLS",
+        "category": "Performance",
+        "date": "July 12, 2026",
+        "image": "https://picsum.photos/seed/blog117/800/400",
+        "excerpt": "Explore our deep dive into optimizing web performance: lcp and cls. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Optimizing Web Performance: LCP and CLS</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "introduction-to-machine-learning-for-javascript-developers",
+        "title": "Introduction to Machine Learning for JavaScript Developers",
+        "category": "Machine Learning",
+        "date": "July 11, 2026",
+        "image": "https://picsum.photos/seed/blog118/800/400",
+        "excerpt": "Explore our deep dive into introduction to machine learning for javascript developers. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Introduction to Machine Learning for JavaScript Developers</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
+    },
+    {
+        "id": "building-progressive-web-apps-pwas-from-scratch",
+        "title": "Building Progressive Web Apps (PWAs) from Scratch",
+        "category": "PWA",
+        "date": "July 11, 2026",
+        "image": "https://picsum.photos/seed/blog119/800/400",
+        "excerpt": "Explore our deep dive into building progressive web apps (pwas) from scratch. Learn the latest best practices, trends, and actionable insights to elevate your skills.",
+        "content": "\n            <p>Welcome to this comprehensive guide on <strong>Building Progressive Web Apps (PWAs) from Scratch</strong>. As the tech landscape continues to evolve rapidly, staying updated with the latest methodologies is crucial for success.</p>\n            <h3>Understanding the Basics</h3>\n            <p>Before diving into advanced techniques, it is essential to establish a solid foundation. In this section, we cover the core principles that dictate the best practices in this field. Whether you are a beginner or a seasoned professional, reviewing these basics ensures that your knowledge is up-to-date.</p>\n            <h3>Advanced Implementation Strategies</h3>\n            <p>Once the foundation is set, you can begin implementing advanced strategies. Here, we outline actionable steps you can take today to integrate these concepts into your existing workflows. From optimizing performance to enhancing security, these methods have been proven in production environments.</p>\n            <ul>\n                <li><strong>Efficiency:</strong> Streamline your processes to save time and resources.</li>\n                <li><strong>Scalability:</strong> Build solutions that can grow alongside your user base.</li>\n                <li><strong>Maintainability:</strong> Write code and design systems that are easy to manage long-term.</li>\n            </ul>\n            <h3>Conclusion</h3>\n            <p>By mastering the concepts discussed in this article, you will be well-equipped to tackle the challenges of modern development. Remember to keep experimenting and learning, as the industry never stands still.</p>\n        "
     }
 ];
 
@@ -2463,7 +2596,7 @@ function renderBlogsList() {
         <div class="blogs-grid">
             ${blogPosts.map(post => `
                 <article class="blog-card">
-                    <div class="blog-card-image" style="background: ${post.gradient};">
+                    <div class="blog-card-image" style="background: url('${post.image}') center/cover no-repeat;">
                         <span class="blog-card-category">${post.category}</span>
                     </div>
                     <div class="blog-card-content">
@@ -2495,7 +2628,7 @@ function renderBlogPost(blogId) {
                 </div>
                 <h1 class="blog-full-title">${post.title}</h1>
             </header>
-            <div class="blog-full-image" style="background: ${post.gradient};"></div>
+            <div class="blog-full-image" style="background: url('${post.image}') center/cover no-repeat;"></div>
             <div class="blog-full-content">
                 ${post.content}
             </div>
